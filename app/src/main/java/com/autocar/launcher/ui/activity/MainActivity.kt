@@ -123,17 +123,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initListener() {
         // 设置按钮
-        binding.btnSettings?.setOnClickListener {
+        binding.statusArea?.weatherCard?.setOnClickListener {
             openSettings()
         }
         
         // AI助手按钮
-        binding.btnAiAssistant?.setOnClickListener {
+        binding.aiAssistant?.setOnClickListener {
             openAiAssistant()
         }
         
         // 导航Dock点击
-        binding.dockNav?.setOnClickListener {
+        binding.dockNavigation?.setOnClickListener {
             onDockClicked(DockType.NAVIGATION)
         }
         
@@ -143,12 +143,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
         
         // 应用Dock点击
-        binding.dockApps?.setOnClickListener {
+        binding.dockStore?.setOnClickListener {
             onDockClicked(DockType.APPS)
         }
         
         // 车辆服务Dock点击
-        binding.dockCarServices?.setOnClickListener {
+        binding.dockCar?.setOnClickListener {
             openCarServices()
         }
         
@@ -219,10 +219,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun setupDockLongPress() {
         listOf(
-            binding.dockNav,
+            binding.dockNavigation,
             binding.dockMusic,
-            binding.dockApps,
-            binding.dockCarServices
+            binding.dockStore,
+            binding.dockCar
         ).forEach { view ->
             view?.setOnLongClickListener {
                 enterDockEditMode()
@@ -693,10 +693,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun updateDockSelection(selected: DockType) {
         val views = mapOf(
-            DockType.NAVIGATION to binding.dockNav,
+            DockType.NAVIGATION to binding.dockNavigation,
             DockType.MUSIC to binding.dockMusic,
-            DockType.APPS to binding.dockApps,
-            DockType.CAR_SERVICES to binding.dockCarServices
+            DockType.APPS to binding.dockStore,
+            DockType.CAR_SERVICES to binding.dockCar
         )
         
         views.forEach { (type, view) ->
@@ -709,10 +709,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun setupDockTouchAnimation() {
         listOf(
-            binding.dockNav,
+            binding.dockNavigation,
             binding.dockMusic,
-            binding.dockApps,
-            binding.dockCarServices
+            binding.dockStore,
+            binding.dockCar
         ).forEach { view ->
             view?.setOnTouchListener { v, event ->
                 when (event.action) {

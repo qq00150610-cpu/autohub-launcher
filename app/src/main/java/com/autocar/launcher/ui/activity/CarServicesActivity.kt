@@ -91,6 +91,10 @@ class CarServicesActivity : BaseActivity<ActivityCarServicesBinding>() {
         }
     }
 
+    override fun initData() {
+        // 初始化数据
+    }
+
     private fun showFileManager() {
         currentFunction = Function.FILE_MANAGER
         updateFunctionIndicator()

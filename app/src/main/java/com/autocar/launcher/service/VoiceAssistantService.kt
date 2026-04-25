@@ -11,7 +11,6 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.os.Bundle
-import android.os.Result
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer

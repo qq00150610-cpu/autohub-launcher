@@ -107,12 +107,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             binding.tvTitle?.text = "登录"
             binding.tvSwitchMode?.text = "没有账号？立即注册"
             binding.btnLogin?.text = "登录"
-            binding.layoutPassword?.visibility = View.GONE
+            binding.layoutPasswordLogin?.visibility = View.GONE
         } else {
             binding.tvTitle?.text = "注册"
             binding.tvSwitchMode?.text = "已有账号？立即登录"
             binding.btnLogin?.text = "注册"
-            binding.layoutPassword?.visibility = View.VISIBLE
+            binding.layoutPasswordLogin?.visibility = View.VISIBLE
         }
     }
 
@@ -253,16 +253,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 val response = when (loginType) {
                     LoginType.PHONE -> {
                         val phone = binding.etPhone?.text?.toString()
-                        ApiClient.authService.loginByPhone(phone!!, code)
+                        ApiClient.authService.loginByPhone(mapOf("phone" to phone!!, "code" to code))
                     }
                     LoginType.EMAIL -> {
                         val email = binding.etEmail?.text?.toString()
-                        ApiClient.authService.loginByEmail(email!!, code)
+                        ApiClient.authService.loginByEmail(mapOf("email" to email!!, "code" to code))
                     }
                     LoginType.PASSWORD -> {
                         val account = binding.etAccount?.text?.toString()
                         val password = binding.etPassword?.text?.toString()
-                        ApiClient.authService.loginByPassword(account!!, password!!)
+                        ApiClient.authService.loginByPassword(mapOf("account" to account!!, "password" to password!!))
                     }
                     LoginType.WECHAT -> null
                 }
@@ -321,9 +321,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 showLoading(true)
                 
                 val response = if (loginType == LoginType.PHONE) {
-                    ApiClient.authService.registerByPhone(target, code, password)
+                    ApiClient.authService.registerByPhone(mapOf("phone" to target, "code" to code, "password" to password))
                 } else {
-                    ApiClient.authService.registerByEmail(target, code, password)
+                    ApiClient.authService.registerByEmail(mapOf("email" to target, "code" to code, "password" to password))
                 }
                 
                 if (response.isSuccessful && response.body()?.success == true) {

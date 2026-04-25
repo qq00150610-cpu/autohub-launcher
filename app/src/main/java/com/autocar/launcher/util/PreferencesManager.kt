@@ -55,6 +55,7 @@ class PreferencesManager(context: Context) {
         private const val KEY_TOKEN = "token"
         private const val KEY_REFRESH_TOKEN = "refresh_token"
         private const val KEY_IS_LOGGED_IN = "is_logged_in"
+        private const val KEY_USER_ID = "user_id"
     }
     
     private val prefs: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -272,6 +273,15 @@ class PreferencesManager(context: Context) {
     
     fun setLoggedIn(loggedIn: Boolean) {
         prefs.edit { putBoolean(KEY_IS_LOGGED_IN, loggedIn) }
+    }
+    
+    /**
+     * 获取用户ID
+     */
+    fun getUserId(): String? = prefs.getString(KEY_USER_ID, null)
+    
+    fun saveUserId(userId: String) {
+        prefs.edit { putString(KEY_USER_ID, userId) }
     }
     
     /**
