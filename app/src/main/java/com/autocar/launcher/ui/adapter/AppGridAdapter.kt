@@ -8,9 +8,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.autocar.launcher.R
 import com.autocar.launcher.data.model.AppInfo
 
@@ -18,43 +18,38 @@ class AppGridAdapter(
     private val context: Context,
     private val appList: List<AppInfo>,
     private val onAppClick: (AppInfo, Int) -> Unit
-) : BaseAdapter() {
+) : RecyclerView.Adapter<AppGridAdapter.ViewHolder>() {
 
-    override fun getCount(): Int = appList.size
+    private var onItemLongClickListener: ((AppInfo, Int) -> Boolean)? = null
 
-    override fun getItem(position: Int): AppInfo = appList[position]
+    fun setOnItemLongClickListener(listener: (AppInfo, Int) -> Boolean) {
+        onItemLongClickListener = listener
+    }
 
-    override fun getItemId(position: Int): Long = position.toLong()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_app_icon, parent, false)
+        return ViewHolder(view)
+    }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view: View
-        val holder: ViewHolder
-
-        if (convertView == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_app_icon, parent, false)
-            holder = ViewHolder()
-            holder.ivIcon = view.findViewById(R.id.ivAppIcon)
-            holder.tvName = view.findViewById(R.id.tvAppName)
-            view.tag = holder
-        } else {
-            view = convertView
-            holder = view.tag as ViewHolder
-        }
-
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val app = appList[position]
         holder.ivIcon?.setImageDrawable(app.icon)
         holder.tvName?.text = app.appName
         holder.tvName?.visibility = View.VISIBLE
 
-        view.setOnClickListener {
+        holder.itemView.setOnClickListener {
             onAppClick(app, position)
         }
 
-        return view
+        holder.itemView.setOnLongClickListener {
+            onItemLongClickListener?.invoke(app, position) ?: false
+        }
     }
 
-    private class ViewHolder {
-        var ivIcon: ImageView? = null
-        var tvName: TextView? = null
+    override fun getItemCount(): Int = appList.size
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var ivIcon: ImageView? = itemView.findViewById(R.id.ivAppIcon)
+        var tvName: TextView? = itemView.findViewById(R.id.tvAppName)
     }
 }

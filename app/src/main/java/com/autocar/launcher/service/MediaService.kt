@@ -6,8 +6,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaMetadata
 import android.media.MediaPlayer
+import android.media.session.MediaSession
 import android.media.session.PlaybackState
-import androidx.media.session.MediaSessionCompat
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -25,12 +25,6 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * 媒体播放服务
  * 控制音乐和视频的播放，提供媒体控制功能
- * 
- * 功能：
- * - 音乐播放控制（播放、暂停、上一首、下一首）
- * - 媒体会话管理
- * - 通知栏媒体控制
- * - 蓝牙/车载媒体按键支持
  */
 class MediaService : BaseService() {
 
@@ -59,7 +53,7 @@ class MediaService : BaseService() {
     private var mediaPlayer: MediaPlayer? = null
     
     // MediaSession
-    private lateinit var mediaSession: MediaSessionCompat
+    private lateinit var mediaSession: MediaSession
     
     // WakeLock
     private lateinit var wakeLock: PowerManager.WakeLock
@@ -84,7 +78,7 @@ class MediaService : BaseService() {
         super.onCreate()
         
         // 初始化 MediaSession
-        mediaSession = MediaSessionCompat(this, MEDIA_SESSION_TAG).apply {
+        mediaSession = MediaSession(this, MEDIA_SESSION_TAG).apply {
             setCallback(mediaSessionCallback)
             isActive = true
         }
@@ -112,9 +106,6 @@ class MediaService : BaseService() {
     
     override fun onHandleBind(intent: Intent?): android.os.IBinder? = null
     
-    /**
-     * 播放
-     */
     private fun play() {
         try {
             if (mediaPlayer == null) {
@@ -131,9 +122,6 @@ class MediaService : BaseService() {
         }
     }
     
-    /**
-     * 暂停
-     */
     private fun pause() {
         try {
             mediaPlayer?.pause()
@@ -146,16 +134,18 @@ class MediaService : BaseService() {
         }
     }
     
-    /**
-     * 停止
-     */
     private fun stop() {
         try {
             mediaPlayer?.stop()
             mediaPlayer?.release()
             mediaPlayer = null
             updatePlaybackState(PlaybackState.STATE_STOPPED)
-            stopForeground(STOP_FOREGROUND_REMOVE)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                stopForeground(STOP_FOREGROUND_REMOVE)
+            } else {
+                @Suppress("DEPRECATION")
+                stopForeground(true)
+            }
             
             LogUtil.d(TAG, "停止播放")
         } catch (e: Exception) {
@@ -163,9 +153,6 @@ class MediaService : BaseService() {
         }
     }
     
-    /**
-     * 播放下一首
-     */
     private fun playNext() {
         if (playQueue.isEmpty()) return
         
@@ -173,9 +160,6 @@ class MediaService : BaseService() {
         playMedia(playQueue[currentIndex])
     }
     
-    /**
-     * 播放上一首
-     */
     private fun playPrevious() {
         if (playQueue.isEmpty()) return
         
@@ -183,9 +167,6 @@ class MediaService : BaseService() {
         playMedia(playQueue[currentIndex])
     }
     
-    /**
-     * 播放指定媒体
-     */
     private fun playMedia(path: String) {
         try {
             stop()
@@ -214,18 +195,12 @@ class MediaService : BaseService() {
         }
     }
     
-    /**
-     * 准备 MediaPlayer
-     */
     private fun prepareMediaPlayer() {
         mediaPlayer = MediaPlayer().apply {
             setWakeMode(applicationContext, PowerManager.PARTIAL_WAKE_LOCK)
         }
     }
     
-    /**
-     * 更新播放状态
-     */
     private fun updatePlaybackState(state: Int) {
         val playbackState = PlaybackState.Builder()
             .setActions(
@@ -243,17 +218,11 @@ class MediaService : BaseService() {
         _playbackState.value = playbackState
     }
     
-    /**
-     * 更新通知
-     */
     private fun updateNotification() {
         val notification = createNotification()
         startForeground(NOTIFICATION_ID, notification)
     }
     
-    /**
-     * 创建通知
-     */
     private fun createNotification(): Notification {
         val contentIntent = PendingIntent.getActivity(
             this,
@@ -285,19 +254,11 @@ class MediaService : BaseService() {
             .addAction(R.drawable.ic_previous, "上一首", createPendingIntent(ACTION_PREVIOUS))
             .addAction(playPauseAction)
             .addAction(R.drawable.ic_next, "下一首", createPendingIntent(ACTION_NEXT))
-            .setStyle(
-                androidx.media.app.NotificationCompat.MediaStyle()
-                    .setMediaSession(mediaSession.sessionToken)
-                    .setShowActionsInCompactView(0, 1, 2)
-            )
             .setOngoing(_playbackState.value.state == PlaybackState.STATE_PLAYING)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()
     }
     
-    /**
-     * 创建 PendingIntent
-     */
     private fun createPendingIntent(action: String): PendingIntent {
         return PendingIntent.getService(
             this,
@@ -307,10 +268,7 @@ class MediaService : BaseService() {
         )
     }
     
-    /**
-     * MediaSession 回调
-     */
-    private val mediaSessionCallback = object : MediaSessionCompat.Callback() {
+    private val mediaSessionCallback = object : MediaSession.Callback() {
         override fun onPlay() {
             play()
         }

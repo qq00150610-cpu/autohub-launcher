@@ -129,12 +129,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initListener() {
         // 设置按钮
-        binding.statusArea?.weatherCard?.setOnClickListener {
+        binding.topBar?.statusArea?.root?.setOnClickListener {
             openSettings()
         }
         
         // AI助手按钮
-        binding.aiAssistant?.root?.setOnClickListener {
+        binding.topBar?.aiAssistant?.root?.setOnClickListener {
             openAiAssistant()
         }
         
@@ -199,14 +199,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         appGridAdapter = AppGridAdapter(this, appList) { app, position ->
             launchApp(app)
         }
-        
-        binding.contentArea?.appGridLayout?.recyclerFrequentlyUsed?.adapter = appGridAdapter
-        
-        // 长按应用图标
-        binding.contentArea?.appGridLayout?.recyclerFrequentlyUsed?.onItemLongClickListener = AdapterView.OnItemLongClickListener { _, view, position, _ ->
-            showAppInfo(appList[position])
+        appGridAdapter.setOnItemLongClickListener { app, position ->
+            showAppInfo(app)
             true
         }
+        
+        binding.contentArea?.appGridLayout?.recyclerFrequentlyUsed?.adapter = appGridAdapter
     }
 
     /**
@@ -529,7 +527,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val capabilities = connectivityManager.getNetworkCapabilities(network)
         
         val isConnected = capabilities != null
-        binding.statusArea?.wifiIcon?.setImageResource(
+        binding.topBar?.statusArea?.wifiIcon?.setImageResource(
             if (isConnected) R.drawable.ic_wifi else R.drawable.ic_signal
         )
     }
@@ -547,7 +545,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 val month = calendar.get(Calendar.MONTH) + 1
                 val day = calendar.get(Calendar.DAY_OF_MONTH)
                 val weekDay = getWeekDay(calendar.get(Calendar.DAY_OF_WEEK))
-                binding.statusArea?.dateText?.text = String.format("%02d:%02d %02d月%02d日 %s", hour, minute, month, day, weekDay)
+                binding.topBar?.statusArea?.dateText?.text = String.format("%02d:%02d %02d月%02d日 %s", hour, minute, month, day, weekDay)
                 handler.postDelayed(this, 1000)
             }
         }
@@ -562,7 +560,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val month = calendar.get(Calendar.MONTH) + 1
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val weekDay = getWeekDay(calendar.get(Calendar.DAY_OF_WEEK))
-        binding.statusArea?.dateText?.text = "${month}月${day}日 $weekDay"
+        binding.topBar?.statusArea?.dateText?.text = "${month}月${day}日 $weekDay"
     }
 
     /**
