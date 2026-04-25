@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 应用名称 -->
+    <string name="app_name">凹凸桌面</string>
+    
+    <!-- 通用 -->
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="close">关闭</string>
+    <string name="save">保存</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="settings">设置</string>
+    <string name="about">关于</string>
+    <string name="back">返回</string>
+    <string name="confirm">确认</string>
+    <string name="error">错误</string>
+    <string name="success">成功</string>
+    <string name="loading">加载中…</string>
+    <string name="refresh">刷新</string>
+    <string name="search">搜索</string>
+    
+    <!-- 主界面 -->
+    <string name="home">主页</string>
+    <string name="all_apps">全部应用</string>
+    <string name="frequently_used">常用应用</string>
+    <string name="recent_apps">最近使用</string>
+    <string name="no_apps">暂无应用</string>
+    <string name="apps_count">%d 个应用</string>
+    
+    <!-- 设置页面 -->
+    <string name="settings_general">通用设置</string>
+    <string name="settings_appearance">外观</string>
+    <string name="settings_function">功能</string>
+    <string name="settings_car">车辆</string>
+    <string name="settings_about">关于</string>
+    
+    <!-- 外观设置 -->
+    <string name="wallpaper">壁纸</string>
+    <string name="wallpaper_change">更换壁纸</string>
+    <string name="theme">主题</string>
+    <string name="theme_color">主题颜色</string>
+    <string name="dark_mode">深色模式</string>
+    <string name="show_app_names">显示应用名称</string>
+    <string name="grid_layout">网格布局</string>
+    <string name="grid_columns">列数</string>
+    <string name="grid_rows">行数</string>
+    
+    <!-- 功能设置 -->
+    <string name="floating_ball">悬浮球</string>
+    <string name="floating_ball_desc">显示悬浮球快捷操作</string>
+    <string name="voice_assistant">语音助手</string>
+    <string name="voice_assistant_desc">语音唤醒和命令控制</string>
+    <string name="auto_start">开机自启</string>
+    <string name="auto_start_desc">开机自动启动桌面</string>
+    <string name="status_bar">状态栏</string>
+    <string name="status_bar_desc">显示顶部状态栏</string>
+    <string name="notification">通知</string>
+    <string name="notification_desc">允许显示通知</string>
+    
+    <!-- 车辆设置 -->
+    <string name="car_connection">车辆连接</string>
+    <string name="car_bluetooth">蓝牙设备</string>
+    <string name="car_bluetooth_desc">连接 OBD 蓝牙设备</string>
+    <string name="car_diagnostics">车辆诊断</string>
+    <string name="car_diagnostics_desc">查看车辆状态数据</string>
+    <string name="car_not_connected">未连接</string>
+    <string name="car_connecting">连接中…</string>
+    <string name="car_connected">已连接</string>
+    
+    <!-- 应用管理 -->
+    <string name="app_info">应用信息</string>
+    <string name="uninstall">卸载</string>
+    <string name="open_app">打开</string>
+    <string name="app_settings">应用设置</string>
+    <string name="set_as_home">设为主屏幕</string>
+    
+    <!-- 音乐播放器 -->
+    <string name="music_player">音乐播放</string>
+    <string name="play">播放</string>
+    <string name="pause">暂停</string>
+    <string name="previous">上一首</string>
+    <string name="next">下一首</string>
+    <string name="shuffle">随机播放</string>
+    <string name="repeat">循环播放</string>
+    <string name="now_playing">正在播放</string>
+    <string name="no_music">暂无音乐</string>
+    <string name="unknown_title">未知标题</string>
+    <string name="unknown_artist">未知艺术家</string>
+    
+    <!-- 导航 -->
+    <string name="navigation">导航</string>
+    <string name="map">地图</string>
+    <string name="search_location">搜索位置</string>
+    <string name="my_location">我的位置</string>
+    <string name="navigation_apps">导航应用</string>
+    
+    <!-- 车辆诊断 -->
+    <string name="car_diagnostics_title">车辆诊断</string>
+    <string name="engine_rpm">发动机转速</string>
+    <string name="vehicle_speed">车速</string>
+    <string name="coolant_temp">冷却液温度</string>
+    <string name="fuel_level">燃油液位</string>
+    <string name="throttle_position">节气门位置</string>
+    <string name="fault_codes">故障码</string>
+    <string name="read_fault_codes">读取故障码</string>
+    <string name="clear_fault_codes">清除故障码</string>
+    <string name="no_fault_codes">无故障码</string>
+    <string name="fault_codes_count">故障码数量: %d</string>
+    <string name="rpm_unit">RPM</string>
+    <string name="speed_unit">km/h</string>
+    <string name="temp_unit">°C</string>
+    <string name="percent_unit">%</string>
+    
+    <!-- 权限提示 -->
+    <string name="permission_required">需要权限</string>
+    <string name="permission_storage">需要存储权限来访问壁纸和媒体文件</string>
+    <string name="permission_location">需要位置权限来获取 GPS 定位</string>
+    <string name="permission_overlay">需要悬浮窗权限来显示悬浮球</string>
+    <string name="permission_notification">需要通知权限来显示通知</string>
+    <string name="permission_bluetooth">需要蓝牙权限来连接车辆设备</string>
+    <string name="permission_microphone">需要麦克风权限来进行语音识别</string>
+    <string name="go_to_settings">前往设置</string>
+    
+    <!-- 提示信息 -->
+    <string name="set_as_home_hint">设置为默认桌面后，凹凸桌面将作为您的主屏幕使用</string>
+    <string name="first_launch_hint">欢迎使用凹凸桌面！请先设置为您的主屏幕</string>
+    <string name="update_available">发现新版本</string>
+    <string name="version_format">版本 %s</string>
+    
+    <!-- 通知 -->
+    <string name="notification_running">凹凸桌面正在后台运行</string>
+    <string name="notification_floating">点击返回桌面</string>
+    <string name="low_battery">电量低</string>
+    <string name="bluetooth_disconnected">蓝牙连接已断开</string>
+    
+    <!-- 错误信息 -->
+    <string name="error_app_not_found">应用未找到</string>
+    <string name="error_permission_denied">权限被拒绝</string>
+    <string name="error_network">网络错误</string>
+    <string name="error_unknown">发生未知错误</string>
+    
+    <!-- ========== 凹凸桌面新版布局相关字符串 ========== -->
+    
+    <!-- AI助手 -->
+    <string name="ai_assistant_name">小A</string>
+    <string name="ai_assistant_hint">点击唤醒语音助手</string>
+    
+    <!-- 插件卡片 -->
+    <string name="plugin_navigation">导航</string>
+    <string name="plugin_music">音乐</string>
+    <string name="plugin_theme">主题</string>
+    <string name="plugin_running">运行中</string>
+    
+    <!-- 天气 -->
+    <string name="weather">天气</string>
+    <string name="weather_hint">点击查看黄历及天气预报</string>
+    <string name="temperature_format">%d°</string>
+    
+    <!-- 悬浮导航 -->
+    <string name="cancel_navigation">取消导航</string>
+    <string name="reroute">重新规划</string>
+    <string name="fullscreen_navigation">全屏导航</string>
+    <string name="eta_format">%d 分钟</string>
+    <string name="distance_format">约 %.1f 公里</string>
+    <string name="toggle_floating">收起/展开</string>
+    <string name="destination">目的地</string>
+    
+    <!-- 悬浮音乐 -->
+    <string name="music_lyrics">歌词</string>
+    <string name="no_lyrics">暂无歌词</string>
+    <string name="now_playing_format">正在播放: %s</string>
+    
+    <!-- Dock栏 -->
+    <string name="dock_home">主页</string>
+    <string name="dock_navigation">导航</string>
+    <string name="dock_music">音乐</string>
+    <string name="dock_store">商店</string>
+    <string name="dock_car">车服务</string>
+    <string name="dock_lock">锁屏</string>
+    <string name="dock_volume">音量</string>
+    <string name="dock_add">添加</string>
+    
+    <!-- 自定义Dock -->
+    <string name="customize_dock">自定义Dock栏</string>
+    <string name="customize_dock_hint">长按图标可自定义常用软件</string>
+    <string name="selected_apps">已选应用</string>
+    <string name="available_apps">可选应用</string>
+    
+    <!-- 音量 -->
+    <string name="volume">音量</string>
+    <string name="volume_format">%d%%</string>
+    <string name="mute">静音</string>
+    
+    <!-- 车主服务 -->
+    <string name="car_services">车主服务</string>
+    <string name="service_file_manager">文件管理</string>
+    <string name="service_file_manager_desc">管理车机文件，清理无用数据</string>
+    <string name="service_trash_cleaner">垃圾清理</string>
+    <string name="service_trash_cleaner_desc">清理系统缓存和无用文件</string>
+    <string name="service_data_monitor">流量监控</string>
+    <string name="service_data_monitor_desc">监控流量使用情况</string>
+    <string name="service_app_backup">应用备份</string>
+    <string name="service_app_backup_desc">备份和恢复应用数据</string>
+    <string name="service_remote_transfer">远程传输</string>
+    <string name="service_remote_transfer_desc">远程传输文件到车机</string>
+    
+    <!-- 日期时间 -->
+    <string name="date_format">yyyy年M月d日 E</string>
+    
+</resources>

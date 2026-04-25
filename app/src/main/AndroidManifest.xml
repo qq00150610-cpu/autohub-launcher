@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    凹凸桌面 AndroidManifest.xml
+    包名: com.autocar.launcher
+    智能车载桌面启动器
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    
+    <!-- 包名 -->
+    package="com.autocar.launcher">
+
+    <!-- ============================================== -->
+    <!-- 权限声明 -->
+    <!-- ============================================== -->
+    
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    
+    <!-- 存储权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" 
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    
+    <!-- 系统窗口权限 - 悬浮窗 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    
+    <!-- 前台服务权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    
+    <!-- 启动完成权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+    <!-- 监听包变化 -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    
+    <!-- 位置权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    
+    <!-- 传感器权限 -->
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+    
+    <!-- 蓝牙权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" 
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    
+    <!-- 音频权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    
+    <!-- 通知权限 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    
+    <!-- 闹钟权限 -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    
+    <!-- 唤醒锁 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <!-- 系统设置 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    
+    <!-- 应用详情 -->
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    
+    <!-- 振动 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- ============================================== -->
+    <!-- 功能声明 -->
+    <!-- ============================================== -->
+    
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+    <uses-feature android:name="android.hardware.location" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <!-- ============================================== -->
+    <!-- 应用组件 -->
+    <!-- ============================================== -->
+    
+    <application
+        android:name=".AutoHubApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AutoHubLauncher"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:persistent="true"
+        android:process=":main"
+        
+        <!-- 主 Activity 配置为 LAUNCHER -->
+        tools:targetApi="34">
+        
+        <!-- ============================================== -->
+        <!-- 主桌面 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:stateNotNeeded="true"
+            android:excludeFromRecents="false"
+            android:clearTaskOnLaunch="true"
+            android:homeActivity="true"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboard|keyboardHidden|navigation|screenSize|smallestScreenSize|screenLayout|uiMode"
+            android:windowSoftInputMode="adjustResize">
+            
+            <!-- Intent Filter: MAIN/LAUNCHER -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.MAIN" />
+            </intent-filter>
+            
+            <!-- Intent Filter: DEFAULT -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!-- ============================================== -->
+        <!-- 设置 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.SettingsActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AutoHubLauncher" />
+        
+        <!-- ============================================== -->
+        <!-- 壁纸选择器 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.WallpaperPickerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AutoHubLauncher" />
+        
+        <!-- ============================================== -->
+        <!-- 主题选择器 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.ThemePickerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AutoHubLauncher" />
+        
+        <!-- ============================================== -->
+        <!-- 应用详情 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.AppInfoActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AutoHubLauncher" />
+        
+        <!-- ============================================== -->
+        <!-- 音乐播放 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.MusicPlayerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AutoHubLauncher" />
+        
+        <!-- ============================================== -->
+        <!-- 导航 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.NavigationActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AutoHubLauncher" />
+        
+        <!-- ============================================== -->
+        <!-- 车辆诊断 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.CarDiagnosticsActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AutoHubLauncher" />
+        
+        <!-- ============================================== -->
+        <!-- 登录/注册 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AutoHubLauncher" />
+        
+        <!-- ============================================== -->
+        <!-- 会员中心 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.MemberCenterActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AutoHubLauncher" />
+        
+        <!-- ============================================== -->
+        <!-- 车主服务 Activity -->
+        <!-- ============================================== -->
+        <activity
+            android:name=".ui.activity.CarServicesActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AutoHubLauncher" />
+
+        <!-- ============================================== -->
+        <!-- 前景服务: 后台服务 -->
+        <!-- ============================================== -->
+        <service
+            android:name=".service.BackgroundService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse"
+            android:process=":background">
+            <property 
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="车载桌面后台运行服务" />
+        </service>
+        
+        <!-- ============================================== -->
+        <!-- 前景服务: 悬浮球服务 -->
+        <!-- ============================================== -->
+        <service
+            android:name=".service.FloatingBallService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse"
+            android:process=":floating">
+            <property 
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="车载悬浮球快捷操作" />
+        </service>
+        
+        <!-- ============================================== -->
+        <!-- 前景服务: 媒体播放服务 -->
+        <!-- ============================================== -->
+        <service
+            android:name=".service.MediaService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback"
+            android:process=":media">
+            <property 
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="车载媒体播放服务" />
+        </service>
+        
+        <!-- ============================================== -->
+        <!-- 前景服务: 位置服务 -->
+        <!-- ============================================== -->
+        <service
+            android:name=".service.LocationService"
+            android:exported="false"
+            android:foregroundServiceType="location"
+            android:process=":location">
+            <property 
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="车载GPS定位服务" />
+        </service>
+        
+        <!-- ============================================== -->
+        <!-- 前景服务: 车辆连接服务 -->
+        <!-- ============================================== -->
+        <service
+            android:name=".service.CarConnectionService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse"
+            android:process=":car">
+            <property 
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="车载OBD/CAN总线连接" />
+        </service>
+        
+        <!-- ============================================== -->
+        <!-- 前景服务: 系统监控服务 -->
+        <!-- ============================================== -->
+        <service
+            android:name=".service.SystemMonitorService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse"
+            android:process=":monitor">
+            <property 
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="系统监控与数据采集" />
+        </service>
+        
+        <!-- ============================================== -->
+        <!-- 前景服务: 语音助手服务 -->
+        <!-- ============================================== -->
+        <service
+            android:name=".service.VoiceAssistantService"
+            android:exported="false"
+            android:foregroundServiceType="microphone"
+            android:process=":voice">
+            <property 
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="语音识别与助手服务" />
+        </service>
+
+        <!-- ============================================== -->
+        <!-- 广播接收器: 开机启动 -->
+        <!-- ============================================== -->
+        <receiver
+            android:name=".receiver.BootReceiver"
+            android:exported="true"
+            android:enabled="true"
+            android:directBootAware="true"
+            android:process=":receiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+        
+        <!-- ============================================== -->
+        <!-- 广播接收器: 桌面切换监听 -->
+        <!-- ============================================== -->
+        <receiver
+            android:name=".receiver.HomeChangeReceiver"
+            android:exported="true"
+            android:enabled="true"
+            android:process=":receiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        
+        <!-- ============================================== -->
+        <!-- 广播接收器: 应用安装/卸载 -->
+        <!-- ============================================== -->
+        <receiver
+            android:name=".receiver.PackageChangeReceiver"
+            android:exported="true"
+            android:enabled="true"
+            android:process=":receiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        
+        <!-- ============================================== -->
+        <!-- 广播接收器: 网络状态变化 -->
+        <!-- ============================================== -->
+        <receiver
+            android:name=".receiver.NetworkChangeReceiver"
+            android:exported="true"
+            android:enabled="true"
+            android:process=":receiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        
+        <!-- ============================================== -->
+        <!-- 广播接收器: 屏幕解锁 -->
+        <!-- ============================================== -->
+        <receiver
+            android:name=".receiver.ScreenUnlockReceiver"
+            android:exported="true"
+            android:enabled="true"
+            android:process=":receiver">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+            </intent-filter>
+        </receiver>
+        
+        <!-- ============================================== -->
+        <!-- 广播接收器: 车辆状态 -->
+        <!-- ============================================== -->
+        <receiver
+            android:name=".receiver.CarStatusReceiver"
+            android:exported="true"
+            android:enabled="true"
+            android:process=":receiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+                <action android:name="android.intent.action.BATTERY_LOW" />
+                <action android:name="android.intent.action.BATTERY_OKAY" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        
+        <!-- ============================================== -->
+        <!-- 广播接收器: 媒体按钮 -->
+        <!-- ============================================== -->
+        <receiver
+            android:name=".receiver.MediaButtonReceiver"
+            android:exported="true"
+            android:enabled="true"
+            android:process=":receiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <!-- ============================================== -->
+        <!-- Content Provider: 应用数据 -->
+        <!-- ============================================== -->
+        <provider
+            android:name=".provider.AppDataProvider"
+            android:authorities="com.autocar.launcher.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+        
+        <!-- ============================================== -->
+        <!-- 桌面快捷方式 -->
+        <!-- ============================================== -->
+        <meta-data
+            android:name="android.app.shortcuts"
+            android:resource="@xml/shortcuts" />
+        
+        <!-- ============================================== -->
+        <!-- 启动器配置 -->
+        <!-- ============================================== -->
+        <meta-data
+            android:name="android.app.homeLauncher"
+            android:value="true" />
+        
+    </application>
+
+</manifest>

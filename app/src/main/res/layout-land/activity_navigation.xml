@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 导航页面布局 - 横屏模式 -->
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".NavigationActivity">
+
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/primary"
+        app:navigationIcon="@drawable/ic_hide"
+        app:title="@string/navigation"
+        app:titleTextColor="@color/text_on_primary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 左侧搜索和导航列表 -->
+    <LinearLayout
+        android:layout_width="@dimen/sidebar_width"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_md"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 搜索栏 -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusBottomEnd="@dimen/corner_radius_lg"
+            app:boxCornerRadiusBottomStart="@dimen/corner_radius_lg"
+            app:boxCornerRadiusTopEnd="@dimen/corner_radius_lg"
+            app:boxCornerRadiusTopStart="@dimen/corner_radius_lg">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_location"
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionSearch"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 当前位置卡片 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCurrentLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            app:cardCornerRadius="@dimen/corner_radius_md"
+            app:cardElevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_md"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_lg"
+                    android:layout_height="@dimen/icon_size_lg"
+                    android:src="@drawable/ic_notification"
+                    android:contentDescription="@string/my_location"
+                    android:tint="@color/primary"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/spacing_sm">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_location"
+                        android:textSize="@dimen/text_size_sm"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvCurrentAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="正在获取..."
+                        android:textSize="@dimen/text_size_xs"
+                        android:textColor="@color/text_secondary"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 导航应用列表标题 -->
+        <TextView
+            android:id="@+id/tvNavAppsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navigation_apps"
+            android:textSize="@dimen/text_size_md"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:layout_marginBottom="@dimen/spacing_sm"/>
+
+        <!-- 导航应用列表 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNavApps"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <!-- 右侧地图占位区域 -->
+    <FrameLayout
+        android:id="@+id/mapContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/surface_dark"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/searchInputLayout"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 地图视图将在这里加载 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_xl"
+                android:layout_height="@dimen/icon_size_xl"
+                android:src="@drawable/ic_notification"
+                android:alpha="0.5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/map"
+                android:textSize="@dimen/text_size_xl"
+                android:textColor="@color/text_secondary_dark"
+                android:layout_marginTop="@dimen/spacing_md"/>
+        </LinearLayout>
+
+        <!-- 刷新位置按钮 -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnRefreshLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/spacing_lg"
+            android:src="@drawable/ic_notification"
+            android:contentDescription="@string/refresh"/>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

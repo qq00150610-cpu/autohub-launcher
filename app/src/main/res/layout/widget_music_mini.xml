@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 迷你音乐播放器组件布局 -->
+<com.google.android.material.card.MaterialCardView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/miniPlayerCard"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/mini_player_height"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/surface_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/spacing_md">
+
+        <!-- 专辑封面缩略图 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/mini_album_art_size"
+            android:layout_height="@dimen/mini_album_art_size"
+            app:cardCornerRadius="@dimen/corner_radius_sm"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/ivMiniAlbumArt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_music"
+                android:contentDescription="@string/music_player"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 歌曲信息 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/spacing_md">
+
+            <TextView
+                android:id="@+id/tvMiniTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown_title"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_primary_dark"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"/>
+
+            <TextView
+                android:id="@+id/tvMiniArtist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown_artist"
+                android:textSize="@dimen/text_size_sm"
+                android:textColor="@color/text_secondary_dark"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <!-- 播放/暂停按钮 -->
+        <ImageButton
+            android:id="@+id/btnMiniPlayPause"
+            android:layout_width="@dimen/icon_size_xl"
+            android:layout_height="@dimen/icon_size_xl"
+            android:src="@drawable/ic_play"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/play"
+            android:padding="@dimen/spacing_sm"/>
+
+        <!-- 下一首按钮 -->
+        <ImageButton
+            android:id="@+id/btnMiniNext"
+            android:layout_width="@dimen/icon_size_xl"
+            android:layout_height="@dimen/icon_size_xl"
+            android:src="@drawable/ic_next"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/next"
+            android:padding="@dimen/spacing_sm"/>
+
+        <!-- 关闭按钮 -->
+        <ImageButton
+            android:id="@+id/btnMiniClose"
+            android:layout_width="@dimen/icon_size_xl"
+            android:layout_height="@dimen/icon_size_xl"
+            android:src="@drawable/ic_hide"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/close"
+            android:padding="@dimen/spacing_sm"/>
+    </LinearLayout>
+
+    <!-- 进度条 -->
+    <ProgressBar
+        android:id="@+id/progressMini"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_gravity="bottom"
+        android:progressTint="@color/primary"
+        android:progressBackgroundTint="@color/divider_dark"
+        android:max="100"
+        android:progress="30"/>
+</com.google.android.material.card.MaterialCardView>

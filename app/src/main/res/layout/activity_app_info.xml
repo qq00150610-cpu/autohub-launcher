@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:navigationIcon="@drawable/ic_hide"
+        app:title="@string/app_info"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/spacing_lg">
+
+        <ImageView
+            android:id="@+id/ivAppIcon"
+            android:layout_width="96dp"
+            android:layout_height="96dp"/>
+
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_xl"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/spacing_md"/>
+
+        <TextView
+            android:id="@+id/tvPackageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_sm"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="@dimen/spacing_sm"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_xl">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open_app"
+                android:onClick="openApp"
+                android:layout_margin="@dimen/spacing_sm"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_settings"
+                android:onClick="openAppSettings"
+                android:layout_margin="@dimen/spacing_sm"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/uninstall"
+                android:onClick="uninstallApp"
+                android:layout_margin="@dimen/spacing_sm"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

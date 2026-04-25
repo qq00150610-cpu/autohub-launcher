@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自定义Dock对话框 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/spacing_lg"
+    android:background="@drawable/bg_dialog">
+
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/customize_dock"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_xl"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 说明文字 -->
+    <TextView
+        android:id="@+id/dialog_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:text="@string/customize_dock_hint"
+        android:textColor="@color/text_secondary_dark"
+        android:textSize="@dimen/text_size_md"
+        app:layout_constraintTop_toBottomOf="@id/dialog_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 已选应用列表 -->
+    <TextView
+        android:id="@+id/label_selected"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:text="@string/selected_apps"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_md"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/dialog_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 已选应用网格（可拖拽排序） -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_selected_apps"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/customize_app_item_height"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/label_selected"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_customize_app"
+        tools:itemCount="8"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:spanCount="4" />
+
+    <!-- 可选应用列表 -->
+    <TextView
+        android:id="@+id/label_available"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:text="@string/available_apps"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_md"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/recycler_selected_apps"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 可选应用网格 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_available_apps"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/customize_app_list_height"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/label_available"
+        app:layout_constraintBottom_toTopOf="@id/button_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_customize_app"
+        tools:itemCount="20"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:spanCount="4" />
+
+    <!-- 按钮容器 -->
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:orientation="horizontal"
+        android:gravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 取消按钮 -->
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/cancel"
+            android:textColor="@color/text_secondary_dark"
+            android:background="@drawable/bg_button_secondary" />
+
+        <!-- 保存按钮 -->
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:text="@string/save"
+            android:textColor="@color/text_on_primary"
+            android:background="@drawable/bg_button_primary" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

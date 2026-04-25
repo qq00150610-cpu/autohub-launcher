@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 悬浮球按钮布局 -->
+<FrameLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/floatingBallContainer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <!-- 悬浮球主体 -->
+    <ImageButton
+        android:id="@+id/floatingBall"
+        android:layout_width="@dimen/floating_ball_size"
+        android:layout_height="@dimen/floating_ball_size"
+        android:src="@drawable/ic_notification"
+        android:background="@drawable/bg_floating_ball"
+        android:contentDescription="@string/floating_ball"
+        android:scaleType="centerInside"
+        android:padding="@dimen/spacing_sm"
+        tools:ignore="SpeakableTextPresentCheck"/>
+
+</FrameLayout>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置页面布局 - 横屏模式 (左右分栏) -->
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".SettingsActivity">
+
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/primary"
+        app:navigationIcon="@drawable/ic_hide"
+        app:title="@string/settings"
+        app:titleTextColor="@color/text_on_primary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 左侧导航菜单 -->
+    <LinearLayout
+        android:id="@+id/leftMenu"
+        android:layout_width="@dimen/sidebar_width"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="@color/surface"
+        android:elevation="@dimen/toolbar_elevation"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 外观设置 -->
+        <LinearLayout
+            android:id="@+id/menuAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_md"
+                android:layout_height="@dimen/icon_size_md"
+                android:src="@drawable/ic_notification"
+                android:contentDescription="@string/settings_appearance"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_appearance"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_primary"
+                android:layout_marginStart="@dimen/spacing_md"/>
+        </LinearLayout>
+
+        <!-- 功能设置 -->
+        <LinearLayout
+            android:id="@+id/menuFunction"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_md"
+                android:layout_height="@dimen/icon_size_md"
+                android:src="@drawable/ic_notification"
+                android:contentDescription="@string/settings_function"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_function"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_primary"
+                android:layout_marginStart="@dimen/spacing_md"/>
+        </LinearLayout>
+
+        <!-- 车辆设置 -->
+        <LinearLayout
+            android:id="@+id/menuCar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_md"
+                android:layout_height="@dimen/icon_size_md"
+                android:src="@drawable/ic_notification"
+                android:contentDescription="@string/settings_car"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_car"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_primary"
+                android:layout_marginStart="@dimen/spacing_md"/>
+        </LinearLayout>
+
+        <!-- 关于 -->
+        <LinearLayout
+            android:id="@+id/menuAbout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_md"
+                android:layout_height="@dimen/icon_size_md"
+                android:src="@drawable/ic_notification"
+                android:contentDescription="@string/settings_about"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_about"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_primary"
+                android:layout_marginStart="@dimen/spacing_md"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- 右侧设置内容区域 -->
+    <ScrollView
+        android:id="@+id/contentScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/leftMenu"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_lg">
+
+            <!-- 内容将通过代码动态填充 -->
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

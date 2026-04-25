@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 仪表盘组件布局 (用于车辆诊断) -->
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gaugeContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/spacing_sm">
+
+    <!-- 仪表盘外环 -->
+    <FrameLayout
+        android:layout_width="@dimen/gauge_size"
+        android:layout_height="@dimen/gauge_size"
+        android:gravity="center">
+
+        <!-- 背景圆环 -->
+        <ProgressBar
+            android:id="@+id/progressGauge"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/bg_floating_ball"/>
+
+        <!-- 中心内容 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- 数值显示 -->
+            <TextView
+                android:id="@+id/tvGaugeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/gauge_text_size"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold"
+                tools:text="0"/>
+
+            <!-- 单位 -->
+            <TextView
+                android:id="@+id/tvGaugeUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_sm"
+                android:textColor="@color/text_secondary"
+                tools:text="RPM"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- 标签 -->
+    <TextView
+        android:id="@+id/tvGaugeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_sm"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="@dimen/spacing_xs"
+        tools:text="发动机转速"/>
+
+</LinearLayout>

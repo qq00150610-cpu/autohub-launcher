@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 车主服务单项 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/car_service_item_container"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/car_service_item_height"
+    android:background="@drawable/bg_car_service_item"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:padding="@dimen/spacing_md">
+
+    <!-- 服务图标 -->
+    <ImageView
+        android:id="@+id/service_icon"
+        android:layout_width="@dimen/car_service_icon_size"
+        android:layout_height="@dimen/car_service_icon_size"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/ic_file_manager" />
+
+    <!-- 服务名称 -->
+    <TextView
+        android:id="@+id/service_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_md"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_lg"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/service_description"
+        app:layout_constraintStart_toEndOf="@id/service_icon"
+        app:layout_constraintEnd_toStartOf="@id/service_arrow"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="文件管理" />
+
+    <!-- 服务描述 -->
+    <TextView
+        android:id="@+id/service_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:textColor="@color/text_secondary_dark"
+        android:textSize="@dimen/text_size_sm"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintTop_toBottomOf="@id/service_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/service_icon"
+        app:layout_constraintEnd_toStartOf="@id/service_arrow"
+        tools:text="管理车机文件，清理无用数据" />
+
+    <!-- 右侧箭头 -->
+    <ImageView
+        android:id="@+id/service_arrow"
+        android:layout_width="@dimen/icon_size_md"
+        android:layout_height="@dimen/icon_size_md"
+        android:src="@drawable/ic_arrow_right"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 状态Badge（如有） -->
+    <TextView
+        android:id="@+id/service_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/spacing_sm"
+        android:paddingVertical="@dimen/spacing_xs"
+        android:background="@drawable/bg_service_badge"
+        android:textColor="@color/text_on_primary"
+        android:textSize="@dimen/text_size_xs"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/service_arrow"
+        android:layout_marginEnd="@dimen/spacing_sm"
+        tools:text="新"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

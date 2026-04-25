@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 快捷方式: 设置 -->
+    <shortcut
+        android:shortcutId="settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings"
+        android:shortcutShortLabel="@string/settings"
+        android:shortcutLongLabel="@string/settings">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.autocar.launcher"
+            android:targetClass="com.autocar.launcher.ui.activity.SettingsActivity"/>
+    </shortcut>
+    
+    <!-- 快捷方式: 音乐 -->
+    <shortcut
+        android:shortcutId="music"
+        android:enabled="true"
+        android:icon="@drawable/ic_music"
+        android:shortcutShortLabel="@string/music_player"
+        android:shortcutLongLabel="@string/music_player">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.autocar.launcher"
+            android:targetClass="com.autocar.launcher.ui.activity.MusicPlayerActivity"/>
+    </shortcut>
+</shortcuts>

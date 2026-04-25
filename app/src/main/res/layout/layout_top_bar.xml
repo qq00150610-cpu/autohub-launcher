@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 顶部信息区布局 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top_bar_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/surface_dark"
+    android:paddingHorizontal="@dimen/spacing_md"
+    android:paddingVertical="@dimen/spacing_sm">
+
+    <!-- 左侧区域：常用软件插件区（约30%宽度） -->
+    <LinearLayout
+        android:id="@+id/plugin_area"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_percent="0.30">
+
+        <!-- 导航卡片 -->
+        <include
+            android:id="@+id/plugin_navigation"
+            layout="@layout/widget_plugin_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/spacing_sm" />
+
+        <!-- 音乐卡片 -->
+        <include
+            android:id="@+id/plugin_music"
+            layout="@layout/widget_plugin_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/spacing_sm" />
+
+        <!-- 主题卡片 -->
+        <include
+            android:id="@+id/plugin_theme"
+            layout="@layout/widget_plugin_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!-- 中央区域：AI助手"小A"（约40%宽度） -->
+    <include
+        android:id="@+id/ai_assistant"
+        layout="@layout/widget_ai_assistant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/plugin_area"
+        app:layout_constraintEnd_toStartOf="@id/status_area"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- 右侧区域：实时信息区（约30%宽度） -->
+    <include
+        android:id="@+id/status_area"
+        layout="@layout/widget_status_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_percent="0.30" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

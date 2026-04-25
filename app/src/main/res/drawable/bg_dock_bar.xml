@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dock栏背景 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/surface_dark" />
+    <corners
+        android:topLeftRadius="@dimen/corner_radius_lg"
+        android:topRightRadius="@dimen/corner_radius_lg" />
+</shape>

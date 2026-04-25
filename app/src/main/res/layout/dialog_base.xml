@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 基础对话框布局 -->
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialogRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_floating_ball"
+    android:padding="@dimen/dialog_padding">
+
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_xl"
+        android:textColor="@color/text_primary"
+        android:textStyle="bold"
+        tools:text="对话框标题"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 内容区域 -->
+    <ScrollView
+        android:id="@+id/contentScrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:maxHeight="300dp"
+        app:layout_constraintTop_toBottomOf="@id/tvDialogTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvDialogContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_md"
+            android:textColor="@color/text_secondary"
+            android:lineSpacingExtra="4dp"
+            tools:text="对话框内容区域，可以放置文本或自定义视图"/>
+    </ScrollView>
+
+    <!-- 操作按钮区域 -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="@dimen/spacing_lg"
+        app:layout_constraintTop_toBottomOf="@id/contentScrollView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 取消按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNegative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+        <!-- 确认按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPositive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:layout_marginStart="@dimen/spacing_sm"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

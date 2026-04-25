@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    
+    <!-- Accent Colors -->
+    <color name="accent">#FF5722</color>
+    <color name="accent_dark">#E64A19</color>
+    
+    <!-- Background Colors -->
+    <color name="background">#FFFFFF</color>
+    <color name="background_dark">#121212</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_dark">#1E1E1E</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_disabled">#BDBDBD</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    
+    <!-- Text Colors Dark Mode -->
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_dark">#B0B0B0</color>
+    
+    <!-- Divider -->
+    <color name="divider">#E0E0E0</color>
+    <color name="divider_dark">#424242</color>
+    
+    <!-- Card -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_background_dark">#2D2D2D</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FFC107</color>
+    <color name="error">#F44336</color>
+    <color name="info">#2196F3</color>
+    
+    <!-- Battery Colors -->
+    <color name="battery_full">#4CAF50</color>
+    <color name="battery_medium">#FFC107</color>
+    <color name="battery_low">#F44336</color>
+    <color name="charging">#2196F3</color>
+    
+    <!-- Theme Preset Colors -->
+    <color name="theme_blue">#2196F3</color>
+    <color name="theme_red">#F44336</color>
+    <color name="theme_pink">#E91E63</color>
+    <color name="theme_purple">#9C27B0</color>
+    <color name="theme_deep_purple">#673AB7</color>
+    <color name="theme_indigo">#3F51B5</color>
+    <color name="theme_cyan">#00BCD4</color>
+    <color name="theme_teal">#009688</color>
+    <color name="theme_green">#4CAF50</color>
+    <color name="theme_orange">#FF9800</color>
+    <color name="theme_brown">#795548</color>
+    <color name="theme_grey">#9E9E9E</color>
+    
+    <!-- Transparent -->
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent_black">#80000000</color>
+    <color name="semi_transparent_white">#80FFFFFF</color>
+    
+    <!-- Ripple -->
+    <color name="ripple_light">#1F000000</color>
+    <color name="ripple_dark">#1FFFFFFF</color>
+    
+    <!-- Overlay -->
+    <color name="overlay_dark">#CC000000</color>
+    <color name="overlay_light">#CCFFFFFF</color>
+</resources>

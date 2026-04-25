@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 悬浮球展开菜单布局 -->
+<FrameLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/floatingMenuContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 背景遮罩 -->
+    <View
+        android:id="@+id/menuOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/semi_transparent_black"
+        android:alpha="0.5"/>
+
+    <!-- 菜单项容器 -->
+    <LinearLayout
+        android:id="@+id/menuItemsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/floating_ball_margin"
+        android:layout_marginBottom="@dimen/floating_ball_margin">
+
+        <!-- 主菜单按钮 (点击收起) -->
+        <LinearLayout
+            android:id="@+id/menuMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/spacing_sm">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主菜单"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_on_primary"
+                android:background="@color/primary"
+                android:paddingHorizontal="@dimen/spacing_md"
+                android:paddingVertical="@dimen/spacing_sm"/>
+
+            <ImageButton
+                android:id="@+id/btnMenuMain"
+                android:layout_width="@dimen/icon_size_xl"
+                android:layout_height="@dimen/icon_size_xl"
+                android:src="@drawable/ic_notification"
+                android:background="@drawable/bg_floating_ball"
+                android:contentDescription="@string/home"
+                android:layout_marginStart="@dimen/spacing_sm"/>
+        </LinearLayout>
+
+        <!-- 菜单项1 - 主页 -->
+        <LinearLayout
+            android:id="@+id/menuHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/spacing_sm">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_on_primary"
+                android:background="@color/primary"
+                android:paddingHorizontal="@dimen/spacing_md"
+                android:paddingVertical="@dimen/spacing_sm"/>
+
+            <ImageButton
+                android:id="@+id/btnMenuHome"
+                android:layout_width="@dimen/icon_size_xl"
+                android:layout_height="@dimen/icon_size_xl"
+                android:src="@drawable/ic_notification"
+                android:background="@drawable/bg_floating_ball"
+                android:contentDescription="@string/home"
+                android:layout_marginStart="@dimen/spacing_sm"/>
+        </LinearLayout>
+
+        <!-- 菜单项2 - 导航 -->
+        <LinearLayout
+            android:id="@+id/menuNavigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/spacing_sm">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/navigation"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_on_primary"
+                android:background="@color/primary"
+                android:paddingHorizontal="@dimen/spacing_md"
+                android:paddingVertical="@dimen/spacing_sm"/>
+
+            <ImageButton
+                android:id="@+id/btnMenuNavigation"
+                android:layout_width="@dimen/icon_size_xl"
+                android:layout_height="@dimen/icon_size_xl"
+                android:src="@drawable/ic_notification"
+                android:background="@drawable/bg_floating_ball"
+                android:contentDescription="@string/navigation"
+                android:layout_marginStart="@dimen/spacing_sm"/>
+        </LinearLayout>
+
+        <!-- 菜单项3 - 音乐 -->
+        <LinearLayout
+            android:id="@+id/menuMusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/spacing_sm">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/music_player"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_on_primary"
+                android:background="@color/primary"
+                android:paddingHorizontal="@dimen/spacing_md"
+                android:paddingVertical="@dimen/spacing_sm"/>
+
+            <ImageButton
+                android:id="@+id/btnMenuMusic"
+                android:layout_width="@dimen/icon_size_xl"
+                android:layout_height="@dimen/icon_size_xl"
+                android:src="@drawable/ic_music"
+                android:background="@drawable/bg_floating_ball"
+                android:contentDescription="@string/music_player"
+                android:layout_marginStart="@dimen/spacing_sm"/>
+        </LinearLayout>
+
+        <!-- 菜单项4 - 车辆诊断 -->
+        <LinearLayout
+            android:id="@+id/menuCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/spacing_sm">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/car_diagnostics"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_on_primary"
+                android:background="@color/primary"
+                android:paddingHorizontal="@dimen/spacing_md"
+                android:paddingVertical="@dimen/spacing_sm"/>
+
+            <ImageButton
+                android:id="@+id/btnMenuCar"
+                android:layout_width="@dimen/icon_size_xl"
+                android:layout_height="@dimen/icon_size_xl"
+                android:src="@drawable/ic_notification"
+                android:background="@drawable/bg_floating_ball"
+                android:contentDescription="@string/car_diagnostics"
+                android:layout_marginStart="@dimen/spacing_sm"/>
+        </LinearLayout>
+
+        <!-- 菜单项5 - 设置 -->
+        <LinearLayout
+            android:id="@+id/menuSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/spacing_sm">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/text_on_primary"
+                android:background="@color/primary"
+                android:paddingHorizontal="@dimen/spacing_md"
+                android:paddingVertical="@dimen/spacing_sm"/>
+
+            <ImageButton
+                android:id="@+id/btnMenuSettings"
+                android:layout_width="@dimen/icon_size_xl"
+                android:layout_height="@dimen/icon_size_xl"
+                android:src="@drawable/ic_settings"
+                android:background="@drawable/bg_floating_ball"
+                android:contentDescription="@string/settings"
+                android:layout_marginStart="@dimen/spacing_sm"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- 收起按钮 (悬浮球本身) -->
+    <ImageButton
+        android:id="@+id/floatingBallCollapse"
+        android:layout_width="@dimen/floating_ball_size"
+        android:layout_height="@dimen/floating_ball_size"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/floating_ball_margin"
+        android:src="@drawable/ic_hide"
+        android:background="@drawable/bg_floating_ball"
+        android:contentDescription="@string/close"
+        android:scaleType="centerInside"
+        android:padding="@dimen/spacing_sm"/>
+
+</FrameLayout>

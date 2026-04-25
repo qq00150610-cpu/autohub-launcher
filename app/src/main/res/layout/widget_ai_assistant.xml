@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- AI助手"小A"组件 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ai_assistant_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
+
+    <!-- AI头像/图标 -->
+    <ImageView
+        android:id="@+id/ai_avatar"
+        android:layout_width="@dimen/ai_avatar_size"
+        android:layout_height="@dimen/ai_avatar_size"
+        android:src="@drawable/ic_ai_assistant"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ai_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_ai_assistant" />
+
+    <!-- AI名称 -->
+    <TextView
+        android:id="@+id/ai_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:text="@string/ai_assistant_name"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_sm"
+        app:layout_constraintTop_toBottomOf="@id/ai_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 唤醒波纹效果（点击时显示） -->
+    <View
+        android:id="@+id/ai_wake_ripple"
+        android:layout_width="@dimen/ai_avatar_ripple_size"
+        android:layout_height="@dimen/ai_avatar_ripple_size"
+        android:background="@drawable/bg_ai_wake_ripple"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="@id/ai_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/ai_avatar"
+        app:layout_constraintStart_toStartOf="@id/ai_avatar"
+        app:layout_constraintEnd_toEndOf="@id/ai_avatar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

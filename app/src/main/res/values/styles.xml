@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 应用主题 -->
+    <style name="Theme.AutoHubLauncher" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary Colors -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/text_on_primary</item>
+        
+        <!-- Secondary Colors -->
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent_dark</item>
+        <item name="colorOnSecondary">@color/text_on_primary</item>
+        
+        <!-- Background -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        
+        <!-- Status Bar -->
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@color/primary_dark</item>
+        
+        <!-- Window -->
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        
+        <!-- No Title -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+    
+    <!-- 全屏主题 -->
+    <style name="Theme.AutoHubLauncher.Fullscreen" parent="Theme.AutoHubLauncher">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    
+    <!-- 启动器主题（无 ActionBar） -->
+    <style name="Theme.AutoHubLauncher.Launcher" parent="Theme.AutoHubLauncher">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+    
+    <!-- Toolbar 样式 -->
+    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:background">@color/primary</item>
+        <item name="titleTextColor">@color/text_on_primary</item>
+    </style>
+    
+    <!-- 卡片样式 -->
+    <style name="CardStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">@color/card_background</item>
+    </style>
+    
+    <!-- 按钮样式 -->
+    <style name="ButtonStyle.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/text_on_primary</item>
+        <item name="cornerRadius">4dp</item>
+    </style>
+    
+    <style name="ButtonStyle.Secondary" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/primary</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="cornerRadius">4dp</item>
+    </style>
+    
+    <!-- 文本样式 -->
+    <style name="TextStyle.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="TextStyle.Subtitle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextStyle.Body">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    
+    <style name="TextStyle.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    
+    <!-- 应用图标样式 -->
+    <style name="AppIconStyle">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+    
+    <!-- 切换按钮样式 -->
+    <style name="SwitchStyle" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="trackTint">@color/primary_light</item>
+        <item name="thumbTint">@color/primary</item>
+    </style>
+    
+    <!-- 对话框样式 -->
+    <style name="DialogStyle" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/accent</item>
+    </style>
+    
+    <!-- 悬浮球样式 -->
+    <style name="FloatingBallStyle">
+        <item name="android:background">@drawable/bg_floating_ball</item>
+        <item name="android:elevation">8dp</item>
+    </style>
+</resources>

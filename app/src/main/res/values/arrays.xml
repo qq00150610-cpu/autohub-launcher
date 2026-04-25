@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 默认分类 -->
+    <string-array name="default_categories">
+        <item>导航</item>
+        <item>音乐</item>
+        <item>视频</item>
+        <item>通讯</item>
+        <item>工具</item>
+        <item>其他</item>
+    </string-array>
+    
+    <!-- 排序方式 -->
+    <string-array name="sort_options">
+        <item>按名称</item>
+        <item>按安装时间</item>
+        <item>按使用频率</item>
+    </string-array>
+    
+    <!-- 主题颜色选项 -->
+    <string-array name="theme_colors">
+        <item>蓝色</item>
+        <item>红色</item>
+        <item>粉色</item>
+        <item>紫色</item>
+        <item>靛蓝色</item>
+        <item>青色</item>
+        <item>蓝绿色</item>
+        <item>绿色</item>
+        <item>橙色</item>
+        <item>棕色</item>
+        <item>灰色</item>
+    </string-array>
+    
+    <!-- 网格列数选项 -->
+    <string-array name="grid_columns_options">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+    
+    <!-- 网格行数选项 -->
+    <string-array name="grid_rows_options">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    
+    <!-- 布局类型 -->
+    <string-array name="layout_types">
+        <item>网格布局</item>
+        <item>列表布局</item>
+    </string-array>
+</resources>

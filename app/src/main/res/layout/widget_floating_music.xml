@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 悬浮音乐歌词卡片 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/floating_music_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/spacing_md"
+    android:background="@drawable/bg_floating_card">
+
+    <!-- 拖动把手 -->
+    <View
+        android:id="@+id/drag_handle"
+        android:layout_width="@dimen/drag_handle_width"
+        android:layout_height="@dimen/drag_handle_height"
+        android:background="@drawable/bg_drag_handle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 音乐信息卡片 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/music_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        app:cardCornerRadius="@dimen/corner_radius_lg"
+        app:cardBackgroundColor="@color/card_background_dark"
+        app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintTop_toBottomOf="@id/drag_handle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_md">
+
+            <!-- 专辑封面 -->
+            <ImageView
+                android:id="@+id/album_cover"
+                android:layout_width="@dimen/floating_album_cover_size"
+                android:layout_height="@dimen/floating_album_cover_size"
+                android:scaleType="centerCrop"
+                android:background="@drawable/bg_album_cover_placeholder"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:src="@drawable/ic_music" />
+
+            <!-- 歌曲名称 -->
+            <TextView
+                android:id="@+id/song_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_md"
+                android:textColor="@color/text_primary_dark"
+                android:textSize="@dimen/text_size_lg"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintTop_toTopOf="@id/album_cover"
+                app:layout_constraintStart_toEndOf="@id/album_cover"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="晴天" />
+
+            <!-- 艺术家 -->
+            <TextView
+                android:id="@+id/artist_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_md"
+                android:textColor="@color/text_secondary_dark"
+                android:textSize="@dimen/text_size_md"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintTop_toBottomOf="@id/song_title"
+                app:layout_constraintStart_toEndOf="@id/album_cover"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="周杰伦" />
+
+            <!-- 播放进度条 -->
+            <SeekBar
+                android:id="@+id/music_seekbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_md"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:progressTint="@color/primary"
+                android:thumbTint="@color/primary"
+                app:layout_constraintTop_toBottomOf="@id/album_cover"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- 当前时间 -->
+            <TextView
+                android:id="@+id/current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary_dark"
+                android:textSize="@dimen/text_size_xs"
+                app:layout_constraintTop_toBottomOf="@id/music_seekbar"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="2:35" />
+
+            <!-- 总时长 -->
+            <TextView
+                android:id="@+id/total_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary_dark"
+                android:textSize="@dimen/text_size_xs"
+                app:layout_constraintTop_toBottomOf="@id/music_seekbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="4:29" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 歌词显示区域 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/lyrics_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_md"
+        app:cardCornerRadius="@dimen/corner_radius_lg"
+        app:cardBackgroundColor="@color/card_background_dark"
+        app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintTop_toBottomOf="@id/music_card"
+        app:layout_constraintBottom_toTopOf="@id/music_controls"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/spacing_md">
+
+            <TextView
+                android:id="@+id/lyrics_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary_dark"
+                android:textSize="@dimen/text_size_md"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.5"
+                tools:text="故事的小黄花\n从出生那年就飘着\n童年的荡秋千\n随记忆一直晃到现在" />
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 音乐控制按钮 -->
+    <LinearLayout
+        android:id="@+id/music_controls"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 上一首 -->
+        <ImageButton
+            android:id="@+id/btn_previous"
+            android:layout_width="@dimen/floating_control_button_size"
+            android:layout_height="@dimen/floating_control_button_size"
+            android:src="@drawable/ic_previous"
+            android:background="@drawable/bg_floating_control_button"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/previous" />
+
+        <Space
+            android:layout_width="@dimen/spacing_md"
+            android:layout_height="match_parent" />
+
+        <!-- 播放/暂停 -->
+        <ImageButton
+            android:id="@+id/btn_play_pause"
+            android:layout_width="@dimen/floating_control_button_size_large"
+            android:layout_height="@dimen/floating_control_button_size_large"
+            android:src="@drawable/ic_play"
+            android:background="@drawable/bg_floating_control_button_primary"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/play" />
+
+        <Space
+            android:layout_width="@dimen/spacing_md"
+            android:layout_height="match_parent" />
+
+        <!-- 下一首 -->
+        <ImageButton
+            android:id="@+id/btn_next"
+            android:layout_width="@dimen/floating_control_button_size"
+            android:layout_height="@dimen/floating_control_button_size"
+            android:src="@drawable/ic_next"
+            android:background="@drawable/bg_floating_control_button"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/next" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

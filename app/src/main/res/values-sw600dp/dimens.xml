@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 中等屏幕尺寸 (宽度 >= 600dp) - 平板竖屏 -->
+    
+    <!-- 通用间距 -->
+    <dimen name="spacing_xs">6dp</dimen>
+    <dimen name="spacing_sm">12dp</dimen>
+    <dimen name="spacing_md">20dp</dimen>
+    <dimen name="spacing_lg">32dp</dimen>
+    <dimen name="spacing_xl">48dp</dimen>
+    
+    <!-- 圆角半径 -->
+    <dimen name="corner_radius_sm">6dp</dimen>
+    <dimen name="corner_radius_md">10dp</dimen>
+    <dimen name="corner_radius_lg">20dp</dimen>
+    <dimen name="corner_radius_circle">50dp</dimen>
+    
+    <!-- 应用图标尺寸 -->
+    <dimen name="app_icon_size">72dp</dimen>
+    <dimen name="app_icon_size_large">96dp</dimen>
+    <dimen name="app_icon_padding">12dp</dimen>
+    
+    <!-- 悬浮球 -->
+    <dimen name="floating_ball_size">56dp</dimen>
+    <dimen name="floating_ball_icon_size">28dp</dimen>
+    <dimen name="floating_ball_margin">24dp</dimen>
+    
+    <!-- 文字大小 -->
+    <dimen name="text_size_xs">12sp</dimen>
+    <dimen name="text_size_sm">14sp</dimen>
+    <dimen name="text_size_md">16sp</dimen>
+    <dimen name="text_size_lg">20sp</dimen>
+    <dimen name="text_size_xl">24sp</dimen>
+    <dimen name="text_size_xxl">30sp</dimen>
+    <dimen name="text_size_title">36sp</dimen>
+    
+    <!-- 卡片样式 -->
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+    
+    <!-- 按钮尺寸 -->
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="button_min_width">120dp</dimen>
+    <dimen name="button_corner_radius">8dp</dimen>
+    
+    <!-- 图标尺寸 -->
+    <dimen name="icon_size_sm">20dp</dimen>
+    <dimen name="icon_size_md">28dp</dimen>
+    <dimen name="icon_size_lg">40dp</dimen>
+    <dimen name="icon_size_xl">64dp</dimen>
+    
+    <!-- 顶部工具栏 -->
+    <dimen name="toolbar_height">64dp</dimen>
+    <dimen name="toolbar_elevation">6dp</dimen>
+    
+    <!-- 状态栏 -->
+    <dimen name="status_bar_height">28dp</dimen>
+    
+    <!-- 底部导航栏 -->
+    <dimen name="navigation_bar_height">64dp</dimen>
+    
+    <!-- 网格布局 - 中屏6列 -->
+    <dimen name="grid_cell_padding">12dp</dimen>
+    <dimen name="grid_spacing">12dp</dimen>
+    <integer name="grid_columns">6</integer>
+    
+    <!-- 音乐播放器 -->
+    <dimen name="album_art_size">280dp</dimen>
+    <dimen name="album_art_size_land">200dp</dimen>
+    <dimen name="player_control_size">56dp</dimen>
+    <dimen name="player_control_size_large">80dp</dimen>
+    
+    <!-- 车辆诊断 -->
+    <dimen name="gauge_size">160dp</dimen>
+    <dimen name="gauge_text_size">28sp</dimen>
+    
+    <!-- 分割线 -->
+    <dimen name="divider_height">1dp</dimen>
+    
+    <!-- 列表项 -->
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="list_item_padding">20dp</dimen>
+    
+    <!-- 主桌面布局 -->
+    <dimen name="status_indicator_size">10dp</dimen>
+    <dimen name="weather_icon_size">40dp</dimen>
+    <dimen name="bottom_nav_icon_size">40dp</dimen>
+    <dimen name="bottom_nav_height">80dp</dimen>
+    
+    <!-- 设置页面 -->
+    <dimen name="setting_item_height">72dp</dimen>
+    <dimen name="setting_icon_size">28dp</dimen>
+    <dimen name="sidebar_width">280dp</dimen>
+    
+    <!-- 迷你播放器 -->
+    <dimen name="mini_player_height">80dp</dimen>
+    <dimen name="mini_album_art_size">64dp</dimen>
+    
+    <!-- 天气组件 -->
+    <dimen name="weather_temp_size">56sp</dimen>
+    <dimen name="weather_icon_large_size">80dp</dimen>
+    
+    <!-- 对话框 -->
+    <dimen name="dialog_padding">32dp</dimen>
+    <dimen name="dialog_corner_radius">20dp</dimen>
+</resources>

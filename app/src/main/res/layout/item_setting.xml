@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置项布局 -->
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settingItemRoot"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/setting_item_height"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="@dimen/spacing_md"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- 左侧图标 -->
+    <ImageView
+        android:id="@+id/ivSettingIcon"
+        android:layout_width="@dimen/setting_icon_size"
+        android:layout_height="@dimen/setting_icon_size"
+        android:src="@drawable/ic_notification"
+        android:contentDescription="@string/settings"
+        android:tint="@color/primary"/>
+
+    <!-- 文字描述区域 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/spacing_md">
+
+        <!-- 主标题 -->
+        <TextView
+            android:id="@+id/tvSettingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_md"
+            android:textColor="@color/text_primary"
+            tools:text="设置项标题"/>
+
+        <!-- 副标题/描述 -->
+        <TextView
+            android:id="@+id/tvSettingSummary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_sm"
+            android:textColor="@color/text_secondary"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:visibility="gone"
+            tools:text="设置项描述信息"
+            tools:visibility="visible"/>
+    </LinearLayout>
+
+    <!-- 右侧内容区域 (可自定义) -->
+    <FrameLayout
+        android:id="@+id/customEndContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_md">
+
+        <!-- Switch开关 (默认隐藏) -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <!-- 箭头指示 (默认显示) -->
+        <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="@dimen/icon_size_md"
+            android:layout_height="@dimen/icon_size_md"
+            android:src="@drawable/ic_notification"
+            android:rotation="180"
+            android:contentDescription="@string/settings"
+            android:alpha="0.5"/>
+
+        <!-- 文字提示 -->
+        <TextView
+            android:id="@+id/tvSettingValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_sm"
+            android:textColor="@color/text_secondary"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+</LinearLayout>

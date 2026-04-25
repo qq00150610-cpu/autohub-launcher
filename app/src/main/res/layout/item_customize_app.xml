@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自定义应用项布局（用于Dock自定义对话框） -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customize_app_item_container"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/customize_app_item_height"
+    android:padding="@dimen/spacing_sm"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <!-- 应用图标 -->
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="@dimen/app_icon_size"
+        android:layout_height="@dimen/app_icon_size"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:src="@drawable/ic_music" />
+
+    <!-- 应用名称 -->
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_xs"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintTop_toBottomOf="@id/app_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="音乐" />
+
+    <!-- 删除按钮（已选应用显示） -->
+    <ImageView
+        android:id="@+id/btn_remove"
+        android:layout_width="@dimen/icon_size_sm"
+        android:layout_height="@dimen/icon_size_sm"
+        android:src="@drawable/ic_remove_circle"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        android:background="@drawable/bg_icon_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
+    <!-- 添加指示器（可选应用显示） -->
+    <ImageView
+        android:id="@+id/add_indicator"
+        android:layout_width="@dimen/icon_size_sm"
+        android:layout_height="@dimen/icon_size_sm"
+        android:src="@drawable/ic_add_circle"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

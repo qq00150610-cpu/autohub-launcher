@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 车辆诊断页面布局 - 竖屏模式 -->
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".CarDiagnosticsActivity">
+
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/primary"
+        app:navigationIcon="@drawable/ic_hide"
+        app:title="@string/car_diagnostics_title"
+        app:titleTextColor="@color/text_on_primary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 连接状态卡片 -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardConnectionStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_md"
+        app:cardCornerRadius="@dimen/corner_radius_md"
+        app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_md"
+            android:gravity="center_vertical">
+
+            <!-- 连接状态指示灯 -->
+            <View
+                android:id="@+id/viewConnectionIndicator"
+                android:layout_width="@dimen/status_indicator_size"
+                android:layout_height="@dimen/status_indicator_size"
+                android:background="@color/error"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/spacing_md">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/car_connection"
+                    android:textSize="@dimen/text_size_md"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvConnectionStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/car_not_connected"
+                    android:textSize="@dimen/text_size_sm"
+                    android:textColor="@color/text_secondary"/>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConnect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/car_connecting"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 诊断数据滚动区域 -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/cardConnectionStatus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
+
+            <!-- 第一行仪表 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!-- 转速表 -->
+                <include
+                    android:id="@+id/gaugeRPM"
+                    layout="@layout/widget_gauge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <!-- 车速表 -->
+                <include
+                    android:id="@+id/gaugeSpeed"
+                    layout="@layout/widget_gauge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <!-- 第二行仪表 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/spacing_md">
+
+                <!-- 水温表 -->
+                <include
+                    android:id="@+id/gaugeTemperature"
+                    layout="@layout/widget_gauge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <!-- 电瓶电压表 -->
+                <include
+                    android:id="@+id/gaugeBattery"
+                    layout="@layout/widget_gauge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <!-- 油量和里程信息卡片 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                app:cardCornerRadius="@dimen/corner_radius_md"
+                app:cardElevation="@dimen/card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_md">
+
+                    <!-- 油量 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_lg"
+                            android:layout_height="@dimen/icon_size_lg"
+                            android:src="@drawable/ic_notification"
+                            android:contentDescription="@string/car_diagnostics"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="油量"
+                            android:textSize="@dimen/text_size_md"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginStart="@dimen/spacing_md"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/tvFuelLevel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="--"
+                            android:textSize="@dimen/text_size_lg"
+                            android:textColor="@color/primary"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:background="@color/divider"
+                        android:layout_marginVertical="@dimen/spacing_md"/>
+
+                    <!-- 里程 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_lg"
+                            android:layout_height="@dimen/icon_size_lg"
+                            android:src="@drawable/ic_notification"
+                            android:contentDescription="@string/car_diagnostics"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="总里程"
+                            android:textSize="@dimen/text_size_md"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginStart="@dimen/spacing_md"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/tvTotalMileage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-- km"
+                            android:textSize="@dimen/text_size_lg"
+                            android:textColor="@color/primary"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 故障码区域 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="故障码"
+                android:textSize="@dimen/text_size_lg"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/spacing_lg"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvErrorCodes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:nestedScrollingEnabled="false"/>
+
+            <!-- 无故障码提示 -->
+            <TextView
+                android:id="@+id/tvNoErrors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="未检测到故障码 ✓"
+                android:textSize="@dimen/text_size_md"
+                android:textColor="@color/success"
+                android:gravity="center"
+                android:padding="@dimen/spacing_lg"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

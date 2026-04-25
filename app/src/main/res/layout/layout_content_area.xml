@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 中央内容区容器 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_area_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark">
+
+    <!-- 主内容层（全屏应用/地图/音乐） -->
+    <FrameLayout
+        android:id="@+id/main_content_layer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 地图/导航界面 -->
+        <FrameLayout
+            android:id="@+id/navigation_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="gone" />
+
+        <!-- 音乐播放器界面 -->
+        <FrameLayout
+            android:id="@+id/music_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="gone" />
+
+        <!-- 应用界面容器 -->
+        <FrameLayout
+            android:id="@+id/app_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="gone" />
+
+        <!-- 主页模式：应用网格 -->
+        <include
+            android:id="@+id/app_grid_layout"
+            layout="@layout/layout_app_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+    </FrameLayout>
+
+    <!-- 驾驶模式悬浮层 - 横屏模式：左侧导航卡片 + 右侧音乐歌词卡片 -->
+    <LinearLayout
+        android:id="@+id/floating_layer_land"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 左侧悬浮导航卡片 -->
+        <include
+            android:id="@+id/floating_navigation"
+            layout="@layout/widget_floating_navigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <!-- 右侧悬浮音乐歌词卡片 -->
+        <include
+            android:id="@+id/floating_music"
+            layout="@layout/widget_floating_music"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!-- 驾驶模式悬浮层 - 竖屏模式：上方导航卡片 + 下方音乐歌词卡片 -->
+    <LinearLayout
+        android:id="@+id/floating_layer_port"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 上方悬浮导航卡片 -->
+        <include
+            android:id="@+id/floating_navigation_port"
+            layout="@layout/widget_floating_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- 下方悬浮音乐歌词卡片 -->
+        <include
+            android:id="@+id/floating_music_port"
+            layout="@layout/widget_floating_music"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!-- 滑动收起指示器 -->
+    <ImageView
+        android:id="@+id/swipe_indicator"
+        android:layout_width="@dimen/icon_size_md"
+        android:layout_height="@dimen/icon_size_md"
+        android:src="@drawable/ic_swipe_indicator"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/spacing_md"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

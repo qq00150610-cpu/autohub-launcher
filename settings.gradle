@@ -1,0 +1,26 @@
+/**
+ * Gradle 设置文件
+ * 配置项目模块和仓库
+ */
+
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// 包含 app 模块
+include ':app'
+
+// 项目名称
+rootProject.name = "AutoHubLauncher"

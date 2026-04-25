@@ -1,0 +1,40 @@
+/**
+ * 凹凸桌面 - 智能车载桌面启动器
+ * Android Launcher Application
+ * 
+ * 包名: com.autocar.launcher
+ * 版本: 1.0.0
+ */
+
+// 项目根目录 build.gradle
+buildscript {
+    ext {
+        kotlin_version = '1.9.22'
+        compose_version = '1.5.8'
+        compose_compiler_version = '1.5.8'
+        lifecycle_version = '2.7.0'
+        coroutines_version = '1.7.3'
+        room_version = '2.6.1'
+    }
+    
+    repositories {
+        google()
+        mavenCentral()
+    }
+    
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

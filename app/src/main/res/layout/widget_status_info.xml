@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 状态信息组件：日期/天气/信号 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/status_info_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="end">
+
+    <!-- 日期显示 -->
+    <TextView
+        android:id="@+id/date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_md"
+        android:gravity="end"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="2024年1月15日 周一" />
+
+    <!-- 天气卡片（可点击展开） -->
+    <LinearLayout
+        android:id="@+id/weather_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_weather_card"
+        android:padding="@dimen/spacing_sm"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/date_text"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 天气图标 -->
+        <ImageView
+            android:id="@+id/weather_icon"
+            android:layout_width="@dimen/weather_icon_size"
+            android:layout_height="@dimen/weather_icon_size"
+            android:scaleType="centerInside"
+            tools:src="@drawable/ic_weather_sunny" />
+
+        <!-- 温度 -->
+        <TextView
+            android:id="@+id/temperature_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/text_size_lg"
+            tools:text="25°" />
+
+    </LinearLayout>
+
+    <!-- WiFi状态图标 -->
+    <ImageView
+        android:id="@+id/wifi_icon"
+        android:layout_width="@dimen/icon_size_sm"
+        android:layout_height="@dimen/icon_size_sm"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:src="@drawable/ic_wifi"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toBottomOf="@id/weather_card"
+        app:layout_constraintEnd_toStartOf="@id/signal_icon"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginEnd="@dimen/spacing_md"
+        tools:src="@drawable/ic_wifi" />
+
+    <!-- 信号强度图标 -->
+    <ImageView
+        android:id="@+id/signal_icon"
+        android:layout_width="@dimen/icon_size_sm"
+        android:layout_height="@dimen/icon_size_sm"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:src="@drawable/ic_signal"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toBottomOf="@id/weather_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_signal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

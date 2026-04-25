@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 应用图标网格项布局 -->
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/grid_cell_padding"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- 应用图标 -->
+    <ImageView
+        android:id="@+id/ivAppIcon"
+        android:layout_width="@dimen/app_icon_size"
+        android:layout_height="@dimen/app_icon_size"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/all_apps"
+        tools:src="@drawable/ic_notification"/>
+
+    <!-- 应用名称 -->
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_sm"
+        android:textColor="@color/text_primary"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/spacing_xs"
+        tools:text="应用名称"/>
+
+</LinearLayout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 应用网格布局 - 主页模式显示 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_grid_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/spacing_md">
+
+    <!-- 常用应用标题 -->
+    <TextView
+        android:id="@+id/title_frequently_used"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frequently_used"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_lg"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 常用应用网格 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_frequently_used"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/title_frequently_used"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_app_icon"
+        tools:itemCount="8"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:spanCount="4" />
+
+    <!-- 最近使用标题 -->
+    <TextView
+        android:id="@+id/title_recent_apps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:text="@string/recent_apps"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_lg"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/recycler_frequently_used"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 最近使用应用网格 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_recent_apps"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/title_recent_apps"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_app_icon"
+        tools:itemCount="12"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:spanCount="4" />
+
+    <!-- 空状态视图 -->
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_xl"
+            android:layout_height="@dimen/icon_size_xl"
+            android:src="@drawable/ic_empty_apps"
+            android:alpha="0.5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:text="@string/no_apps"
+            android:textColor="@color/text_secondary_dark"
+            android:textSize="@dimen/text_size_md" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

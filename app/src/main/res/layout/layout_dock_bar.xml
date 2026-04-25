@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 底部导航栏（Dock栏） -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dock_bar_container"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dock_bar_height"
+    android:background="@drawable/bg_dock_bar"
+    android:elevation="@dimen/dock_bar_elevation"
+    android:paddingHorizontal="@dimen/spacing_sm">
+
+    <!-- Home按钮 -->
+    <include
+        android:id="@+id/dock_home"
+        layout="@layout/item_dock_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/dock_navigation"
+        app:layout_constraintHorizontal_chainStyle="spread" />
+
+    <!-- 导航按钮 -->
+    <include
+        android:id="@+id/dock_navigation"
+        layout="@layout/item_dock_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/dock_home"
+        app:layout_constraintEnd_toStartOf="@id/dock_music" />
+
+    <!-- 音乐按钮 -->
+    <include
+        android:id="@+id/dock_music"
+        layout="@layout/item_dock_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/dock_navigation"
+        app:layout_constraintEnd_toStartOf="@id/dock_store" />
+
+    <!-- 应用商店按钮 -->
+    <include
+        android:id="@+id/dock_store"
+        layout="@layout/item_dock_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/dock_music"
+        app:layout_constraintEnd_toStartOf="@id/dock_car" />
+
+    <!-- 汽车服务按钮 -->
+    <include
+        android:id="@+id/dock_car"
+        layout="@layout/item_dock_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/dock_store"
+        app:layout_constraintEnd_toStartOf="@id/dock_lock" />
+
+    <!-- 锁屏按钮 -->
+    <include
+        android:id="@+id/dock_lock"
+        layout="@layout/item_dock_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/dock_car"
+        app:layout_constraintEnd_toStartOf="@id/dock_volume" />
+
+    <!-- 音量按钮 -->
+    <include
+        android:id="@+id/dock_volume"
+        layout="@layout/item_dock_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/dock_lock"
+        app:layout_constraintEnd_toStartOf="@id/dock_add" />
+
+    <!-- 添加按钮 -->
+    <include
+        android:id="@+id/dock_add"
+        layout="@layout/item_dock_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/dock_volume"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

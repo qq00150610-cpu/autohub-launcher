@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 音量调节弹窗 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/volume_popup_container"
+    android:layout_width="@dimen/volume_popup_width"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/spacing_lg"
+    android:background="@drawable/bg_volume_popup"
+    android:elevation="@dimen/card_elevation">
+
+    <!-- 音量图标 -->
+    <ImageView
+        android:id="@+id/volume_icon"
+        android:layout_width="@dimen/icon_size_lg"
+        android:layout_height="@dimen/icon_size_lg"
+        android:src="@drawable/ic_volume"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/ic_volume" />
+
+    <!-- 当前音量文字 -->
+    <TextView
+        android:id="@+id/volume_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_md"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="@dimen/text_size_lg"
+        app:layout_constraintTop_toTopOf="@id/volume_icon"
+        app:layout_constraintBottom_toBottomOf="@id/volume_icon"
+        app:layout_constraintStart_toEndOf="@id/volume_icon"
+        tools:text="65%" />
+
+    <!-- 音量滑块 -->
+    <SeekBar
+        android:id="@+id/volume_seekbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:max="100"
+        android:progress="65"
+        android:progressTint="@color/primary"
+        android:thumbTint="@color/primary"
+        app:layout_constraintTop_toBottomOf="@id/volume_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 静音按钮 -->
+    <ImageButton
+        android:id="@+id/btn_mute"
+        android:layout_width="@dimen/icon_size_lg"
+        android:layout_height="@dimen/icon_size_lg"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:src="@drawable/ic_volume_up"
+        android:background="@drawable/bg_icon_button"
+        android:scaleType="centerInside"
+        android:contentDescription="@string/mute"
+        app:layout_constraintTop_toBottomOf="@id/volume_seekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_volume_up" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
