@@ -40,6 +40,12 @@ class AutoHubApplication : Application() {
         fun getInstance(): AutoHubApplication {
             return instance ?: throw IllegalStateException("Application not initialized")
         }
+        
+        /**
+         * 安全获取 Application 实例
+         * 如果未初始化，返回 null 而不是抛出异常
+         */
+        fun getInstanceOrNull(): AutoHubApplication? = instance
     }
     
     // 全局上下文
@@ -52,22 +58,27 @@ class AutoHubApplication : Application() {
     
     override fun onCreate() {
         super.onCreate()
-        instance = this
-        context = applicationContext
         
-        // 初始化日志
-        LogUtil.init()
-        
-        // 初始化偏好设置
-        preferencesManager = PreferencesManager(this)
-        
-        // 创建通知渠道
-        createNotificationChannels()
-        
-        // 设置异常处理
-        setupExceptionHandler()
-        
-        LogUtil.d(TAG, "凹凸桌面 Application 初始化完成")
+        try {
+            instance = this
+            context = applicationContext
+            
+            // 初始化日志
+            LogUtil.init()
+            
+            // 初始化偏好设置
+            preferencesManager = PreferencesManager(this)
+            
+            // 创建通知渠道
+            createNotificationChannels()
+            
+            // 设置异常处理
+            setupExceptionHandler()
+            
+            LogUtil.d(TAG, "凹凸桌面 Application 初始化完成")
+        } catch (e: Exception) {
+            android.util.Log.e(TAG, "Application 初始化失败", e)
+        }
     }
     
     /**

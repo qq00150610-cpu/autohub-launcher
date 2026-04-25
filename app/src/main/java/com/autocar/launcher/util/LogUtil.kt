@@ -19,13 +19,19 @@ object LogUtil {
      * 初始化日志系统
      */
     fun init() {
-        // 初始化 Timber
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        } else {
-            Timber.plant(ReleaseTree())
+        try {
+            // 初始化 Timber
+            if (BuildConfig.DEBUG) {
+                Timber.plant(Timber.DebugTree())
+            } else {
+                Timber.plant(ReleaseTree())
+            }
+            enableLog = true
+        } catch (e: Exception) {
+            // Timber 初始化失败时，使用 Android 默认日志
+            enableLog = false
+            android.util.Log.e("LogUtil", "Timber 初始化失败，使用默认日志", e)
         }
-        enableLog = true
     }
     
     /**

@@ -204,9 +204,11 @@ class FloatingBallService : BaseService() {
                 }
                 
                 if (isDragging) {
-                    layoutParams.x += deltaX.toInt()
-                    layoutParams.y += deltaY.toInt()
-                    windowManager.updateViewLayout(floatingBallView, layoutParams)
+                    if (::layoutParams.isInitialized) {
+                        layoutParams.x += deltaX.toInt()
+                        layoutParams.y += deltaY.toInt()
+                        windowManager.updateViewLayout(floatingBallView, layoutParams)
+                    }
                     
                     lastTouchX = event.rawX
                     lastTouchY = event.rawY

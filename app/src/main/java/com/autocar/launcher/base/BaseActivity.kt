@@ -57,19 +57,25 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // 创建 ViewBinding
-        binding = createBinding()
-        setContentView(binding.root)
-        
-        // 禁止截屏（可选，保护隐私）
-        // window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
-        
-        LogUtil.d(TAG, "onCreate: ${javaClass.simpleName}")
-        
-        // 初始化
-        initView()
-        initData()
-        initListener()
+        try {
+            // 创建 ViewBinding
+            binding = createBinding()
+            setContentView(binding.root)
+            
+            // 禁止截屏（可选，保护隐私）
+            // window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+            
+            LogUtil.d(TAG, "onCreate: ${javaClass.simpleName}")
+            
+            // 初始化
+            initView()
+            initData()
+            initListener()
+        } catch (e: Exception) {
+            LogUtil.e(TAG, "onCreate 初始化失败", e)
+            // 尝试显示错误
+            finish()
+        }
     }
     
     override fun onStart() {

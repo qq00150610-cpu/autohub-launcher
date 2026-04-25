@@ -204,7 +204,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             true
         }
         
-        binding.contentArea?.appGridLayout?.recyclerFrequentlyUsed?.adapter = appGridAdapter
+        val recyclerView = binding.contentArea?.appGridLayout?.recyclerFrequentlyUsed
+        recyclerView?.layoutManager = androidx.recyclerview.widget.GridLayoutManager(this, 4)
+        recyclerView?.adapter = appGridAdapter
     }
 
     /**
@@ -255,9 +257,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun setupTopBar() {
         // 更新时间
         updateTime()
-        
-        // 更新日期
-        updateDate()
         
         // 启动定时器更新状态
         startStatusUpdateTimer()
@@ -446,18 +445,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      * 注册广播接收器
      */
     private fun registerReceivers() {
-        // 屏幕旋转
-        registerReceiver(screenRotateReceiver, IntentFilter(Intent.ACTION_CONFIGURATION_CHANGED))
-        
-        // 网络变化
-        registerReceiver(networkChangeReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-        
-        // 包变化
-        registerReceiver(packageChangeReceiver, IntentFilter().apply {
-            addAction(Intent.ACTION_PACKAGE_ADDED)
-            addAction(Intent.ACTION_PACKAGE_REMOVED)
-            addDataScheme("package")
-        })
+        try {
+            // 屏幕旋转
+            registerReceiver(screenRotateReceiver, IntentFilter(Intent.ACTION_CONFIGURATION_CHANGED))
+            
+            // 网络变化
+            registerReceiver(networkChangeReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+            
+            // 包变化
+            registerReceiver(packageChangeReceiver, IntentFilter().apply {
+                addAction(Intent.ACTION_PACKAGE_ADDED)
+                addAction(Intent.ACTION_PACKAGE_REMOVED)
+                addDataScheme("package")
+            })
+        } catch (e: Exception) {
+            LogUtil.e(TAG, "注册广播失败", e)
+        }
     }
 
     /**
@@ -522,14 +525,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      * 更新网络状态
      */
     private fun updateNetworkStatus() {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network = connectivityManager.activeNetwork
-        val capabilities = connectivityManager.getNetworkCapabilities(network)
-        
-        val isConnected = capabilities != null
-        binding.topBar?.statusArea?.wifiIcon?.setImageResource(
-            if (isConnected) R.drawable.ic_wifi else R.drawable.ic_signal
-        )
+        try {
+            val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+            val network = connectivityManager?.activeNetwork
+            val capabilities = connectivityManager?.getNetworkCapabilities(network)
+            
+            val isConnected = capabilities != null
+            binding.topBar?.statusArea?.wifiIcon?.setImageResource(
+                if (isConnected) R.drawable.ic_wifi else R.drawable.ic_signal
+            )
+        } catch (e: Exception) {
+            LogUtil.e(TAG, "更新网络状态失败", e)
+        }
     }
 
     /**
@@ -597,22 +604,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      * 更新状态信息
      */
     private fun updateStatus() {
-        // 更新内存使用
-        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val memoryInfo = ActivityManager.MemoryInfo()
-        activityManager.getMemoryInfo(memoryInfo)
-        val usedMemory = (memoryInfo.totalMem - memoryInfo.availMem) / (1024 * 1024)
-        val totalMemory = memoryInfo.totalMem / (1024 * 1024)
-        
-        // 更新GPS状态
-        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        
-        // 更新蓝牙状态
-        val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as? android.bluetooth.BluetoothManager
-        val isBluetoothEnabled = bluetoothManager?.adapter?.isEnabled == true
-        
-        LogUtil.d(TAG, "内存: ${usedMemory}MB/${totalMemory}MB, GPS: $isGpsEnabled, 蓝牙: $isBluetoothEnabled")
+        try {
+            // 更新内存使用
+            val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
+            activityManager?.let { am ->
+                val memoryInfo = ActivityManager.MemoryInfo()
+                am.getMemoryInfo(memoryInfo)
+                val usedMemory = (memoryInfo.totalMem - memoryInfo.availMem) / (1024 * 1024)
+                val totalMemory = memoryInfo.totalMem / (1024 * 1024)
+                LogUtil.d(TAG, "内存: ${usedMemory}MB/${totalMemory}MB")
+            }
+            
+            // 更新GPS状态
+            val locationManager = getSystemService(Context.LOCATION_SERVICE) as? LocationManager
+            val isGpsEnabled = locationManager?.isProviderEnabled(LocationManager.GPS_PROVIDER) == true
+            
+            // 更新蓝牙状态
+            val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as? android.bluetooth.BluetoothManager
+            val isBluetoothEnabled = bluetoothManager?.adapter?.isEnabled == true
+            
+            LogUtil.d(TAG, "GPS: $isGpsEnabled, 蓝牙: $isBluetoothEnabled")
+        } catch (e: Exception) {
+            LogUtil.e(TAG, "更新状态失败", e)
+        }
     }
 
     /**

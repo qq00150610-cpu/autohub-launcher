@@ -70,8 +70,12 @@ object ApiClient {
         override fun intercept(chain: Interceptor.Chain): Response {
             val originalRequest = chain.request()
             
-            // 获取Token
-            val token = PreferencesManager.getInstance().getToken()
+            // 安全获取Token
+            val token = try {
+                PreferencesManager.getInstanceOrNull()?.getToken()
+            } catch (e: Exception) {
+                null
+            }
             
             // 如果没有Token，直接请求
             if (token.isNullOrBlank()) {

@@ -60,18 +60,27 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = createBinding(inflater, container)
-        LogUtil.d(TAG, "onCreateView: ${javaClass.simpleName}")
-        return binding.root
+    ): View? {
+        return try {
+            _binding = createBinding(inflater, container)
+            LogUtil.d(TAG, "onCreateView: ${javaClass.simpleName}")
+            binding.root
+        } catch (e: Exception) {
+            LogUtil.e(TAG, "onCreateView 初始化失败", e)
+            null
+        }
     }
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        LogUtil.d(TAG, "onViewCreated: ${javaClass.simpleName}")
-        initView()
-        initData()
-        initListener()
+        try {
+            super.onViewCreated(view, savedInstanceState)
+            LogUtil.d(TAG, "onViewCreated: ${javaClass.simpleName}")
+            initView()
+            initData()
+            initListener()
+        } catch (e: Exception) {
+            LogUtil.e(TAG, "onViewCreated 初始化失败", e)
+        }
     }
     
     override fun onStart() {

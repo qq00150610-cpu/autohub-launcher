@@ -23,6 +23,12 @@ class PreferencesManager(context: Context) {
             return instance ?: throw IllegalStateException("PreferencesManager not initialized. Call init(context) first.")
         }
         
+        /**
+         * 安全获取 PreferencesManager 实例
+         * 如果未初始化，返回 null 而不是抛出异常
+         */
+        fun getInstanceOrNull(): PreferencesManager? = instance
+        
         fun init(context: Context): PreferencesManager {
             return instance ?: synchronized(this) {
                 instance ?: PreferencesManager(context.applicationContext).also { instance = it }
