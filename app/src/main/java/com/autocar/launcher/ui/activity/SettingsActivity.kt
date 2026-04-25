@@ -191,9 +191,11 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
         if (enabled) {
             // 启动悬浮球服务
             val intent = Intent(this, com.autocar.launcher.service.FloatingBallService::class.java)
-            android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O -> {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 startForegroundService(intent)
-            } ?: startService(intent)
+            } else {
+                startService(intent)
+            }
         } else {
             // 停止悬浮球服务
             val intent = Intent(this, com.autocar.launcher.service.FloatingBallService::class.java)
