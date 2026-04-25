@@ -26,11 +26,27 @@ jobs:
     
     - name: Decode Keystore
       run: |
-        echo "${{ secrets.SIGNING_KEY }}" | base64 -d > autohub.keystore || echo "Using local keystore"
+        # 先删除可能存在的旧文件
+        rm -f autohub.keystore
+        
+        # 尝试从 secrets 解码
+        if [ -n "${{ secrets.SIGNING_KEY }}" ]; then
+          echo "${{ secrets.SIGNING_KEY }}" | base64 -d > autohub.keystore
+          # 验证 keystore 是否有效
+          if ! keytool -list -keystore autohub.keystore -storepass autohub123 -alias autohub 2>/dev/null; then
+            echo "Keystore from secrets is invalid, creating new one"
+            rm -f autohub.keystore
+          fi
+        fi
+        
+        # 如果没有有效的 keystore，创建新的
         if [ ! -f autohub.keystore ]; then
-          echo "Creating debug keystore"
+          echo "Creating new keystore"
           keytool -genkey -v -keystore autohub.keystore -alias autohub -keyalg RSA -keysize 2048 -validity 10000 -storepass autohub123 -keypass autohub123 -dname "CN=AutoHub, OU=AutoHub, O=AutoHub, L=Beijing, ST=Beijing, C=CN"
         fi
+        
+        # 验证 keystore
+        keytool -list -keystore autohub.keystore -storepass autohub123 -alias autohub
     
     - name: Build Release APK
       run: ./gradlew assembleRelease
