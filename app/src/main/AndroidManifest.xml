@@ -6,8 +6,6 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    
-    <!-- 包名 -->
     package="com.autocar.launcher">
 
     <!-- ============================================== -->
@@ -116,8 +114,6 @@
         android:largeHeap="true"
         android:persistent="true"
         android:process=":main"
-        
-        <!-- 主 Activity 配置为 LAUNCHER -->
         tools:targetApi="34">
         
         <!-- ============================================== -->
