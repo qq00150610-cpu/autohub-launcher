@@ -24,22 +24,25 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     
+    - name: Decode Keystore
+      run: |
+        echo "${{ secrets.SIGNING_KEY }}" | base64 -d > autohub.keystore || echo "Using local keystore"
+        if [ ! -f autohub.keystore ]; then
+          echo "Creating debug keystore"
+          keytool -genkey -v -keystore autohub.keystore -alias autohub -keyalg RSA -keysize 2048 -validity 10000 -storepass autohub123 -keypass autohub123 -dname "CN=AutoHub, OU=AutoHub, O=AutoHub, L=Beijing, ST=Beijing, C=CN"
+        fi
+    
     - name: Build Release APK
       run: ./gradlew assembleRelease
-    
-    - name: Sign APK
-      uses: r0adkll/sign-android-release@v1
-      with:
-        releaseDirectory: app/build/outputs/apk/release
-        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-        alias: autohub
-        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-        keyPassword: ${{ secrets.KEY_PASSWORD }}
+      env:
+        KEY_ALIAS: autohub
+        KEY_PASSWORD: autohub123
+        STORE_PASSWORD: autohub123
     
     - name: Rename APK
       run: |
-        mv app/build/outputs/apk/release/app-release-unsigned-signed.apk 凹凸桌面-v1.0-release.apk || \
-        mv app/build/outputs/apk/release/app-release.apk 凹凸桌面-v1.0-release.apk
+        mv app/build/outputs/apk/release/app-release.apk 凹凸桌面-v1.0-release.apk || \
+        mv app/build/outputs/apk/release/app-default-release.apk 凹凸桌面-v1.0-release.apk
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
@@ -48,7 +51,7 @@ jobs:
         path: 凹凸桌面-v1.0-release.apk
     
     - name: Create Release
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
       uses: softprops/action-gh-release@v1
       with:
         tag_name: v1.0.${{ github.run_number }}
