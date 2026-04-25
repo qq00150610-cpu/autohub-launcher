@@ -16,6 +16,19 @@ import androidx.core.content.edit
 class PreferencesManager(context: Context) {
 
     companion object {
+        @Volatile
+        private var instance: PreferencesManager? = null
+        
+        fun getInstance(): PreferencesManager {
+            return instance ?: throw IllegalStateException("PreferencesManager not initialized. Call init(context) first.")
+        }
+        
+        fun init(context: Context): PreferencesManager {
+            return instance ?: synchronized(this) {
+                instance ?: PreferencesManager(context.applicationContext).also { instance = it }
+            }
+        }
+        
         // 文件名
         private const val PREF_NAME = "autohub_preferences"
         
@@ -39,6 +52,9 @@ class PreferencesManager(context: Context) {
         private const val KEY_CAR_BT_ADDRESS = "car_bt_address"
         private const val KEY_CAR_BT_NAME = "car_bt_name"
         private const val KEY_HOME_LAYOUT = "home_layout"
+        private const val KEY_TOKEN = "token"
+        private const val KEY_REFRESH_TOKEN = "refresh_token"
+        private const val KEY_IS_LOGGED_IN = "is_logged_in"
     }
     
     private val prefs: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -227,6 +243,46 @@ class PreferencesManager(context: Context) {
     
     fun setLastUpdateCheck(time: Long) {
         prefs.edit { putLong(KEY_LAST_UPDATE_CHECK, time) }
+    }
+    
+    // ==================== 用户认证 ====================
+    
+    /**
+     * 获取Token
+     */
+    fun getToken(): String? = prefs.getString(KEY_TOKEN, null)
+    
+    fun saveToken(token: String) {
+        prefs.edit { putString(KEY_TOKEN, token) }
+    }
+    
+    /**
+     * 获取RefreshToken
+     */
+    fun getRefreshToken(): String? = prefs.getString(KEY_REFRESH_TOKEN, null)
+    
+    fun saveRefreshToken(token: String) {
+        prefs.edit { putString(KEY_REFRESH_TOKEN, token) }
+    }
+    
+    /**
+     * 是否已登录
+     */
+    fun isLoggedIn(): Boolean = prefs.getBoolean(KEY_IS_LOGGED_IN, false)
+    
+    fun setLoggedIn(loggedIn: Boolean) {
+        prefs.edit { putBoolean(KEY_IS_LOGGED_IN, loggedIn) }
+    }
+    
+    /**
+     * 清除登录信息
+     */
+    fun clearToken() {
+        prefs.edit {
+            remove(KEY_TOKEN)
+            remove(KEY_REFRESH_TOKEN)
+            putBoolean(KEY_IS_LOGGED_IN, false)
+        }
     }
     
     /**
