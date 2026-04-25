@@ -121,6 +121,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${rootProject.ext.lifecycle_version}"
     implementation "androidx.lifecycle:lifecycle-service:${rootProject.ext.lifecycle_version}"
     
+    // Media 会话支持（修复 MediaSessionCompat）
+    implementation 'androidx.media:media:1.7.0'
+    
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.6'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.6'

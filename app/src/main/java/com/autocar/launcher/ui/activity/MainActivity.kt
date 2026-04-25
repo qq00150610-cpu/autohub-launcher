@@ -134,7 +134,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
         
         // AI助手按钮
-        binding.aiAssistant?.setOnClickListener {
+        binding.aiAssistant?.root?.setOnClickListener {
             openAiAssistant()
         }
         
@@ -200,10 +200,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             launchApp(app)
         }
         
-        binding.contentArea?.appGridLayout?.frequentlyUsedRecyclerView?.adapter = appGridAdapter
+        binding.contentArea?.appGridLayout?.recyclerFrequentlyUsed?.adapter = appGridAdapter
         
         // 长按应用图标
-        binding.contentArea?.appGridLayout?.frequentlyUsedRecyclerView?.onItemLongClickListener = AdapterView.OnItemLongClickListener { _, view, position, _ ->
+        binding.contentArea?.appGridLayout?.recyclerFrequentlyUsed?.onItemLongClickListener = AdapterView.OnItemLongClickListener { _, view, position, _ ->
             showAppInfo(appList[position])
             true
         }
@@ -856,10 +856,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun enterDrivingMode() {
         // 隐藏Dock栏
-        binding.dockBar?.visibility = View.GONE
+        binding.dockBar?.root?.visibility = View.GONE
         
         // 简化顶部状态栏
-        binding.topBar?.alpha = 0.5f
+        binding.topBar?.root?.alpha = 0.5f
         
         // 隐藏悬浮导航
         // 悬浮球保持显示
@@ -872,10 +872,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun exitDrivingMode() {
         // 显示Dock栏
-        binding.dockBar?.visibility = View.VISIBLE
+        binding.dockBar?.root?.visibility = View.VISIBLE
         
         // 恢复顶部状态栏
-        binding.topBar?.alpha = 1f
+        binding.topBar?.root?.alpha = 1f
         
         Toast.makeText(this, "已退出驾驶模式", Toast.LENGTH_SHORT).show()
     }
