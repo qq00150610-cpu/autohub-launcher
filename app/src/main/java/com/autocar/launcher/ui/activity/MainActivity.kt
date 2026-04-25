@@ -213,6 +213,47 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      * 设置底部Dock栏
      */
     private fun setupDockBar() {
+        // 初始化Dock按钮
+        binding.dockBar?.dockHome?.apply {
+            findViewById<ImageView>(R.id.dock_icon)?.setImageResource(R.drawable.ic_home)
+            findViewById<TextView>(R.id.dock_label)?.text = "主页"
+        }
+        
+        binding.dockBar?.dockNavigation?.apply {
+            findViewById<ImageView>(R.id.dock_icon)?.setImageResource(R.drawable.ic_navigation)
+            findViewById<TextView>(R.id.dock_label)?.text = "导航"
+        }
+        
+        binding.dockBar?.dockMusic?.apply {
+            findViewById<ImageView>(R.id.dock_icon)?.setImageResource(R.drawable.ic_music)
+            findViewById<TextView>(R.id.dock_label)?.text = "音乐"
+        }
+        
+        binding.dockBar?.dockStore?.apply {
+            findViewById<ImageView>(R.id.dock_icon)?.setImageResource(R.drawable.ic_apps)
+            findViewById<TextView>(R.id.dock_label)?.text = "应用"
+        }
+        
+        binding.dockBar?.dockCar?.apply {
+            findViewById<ImageView>(R.id.dock_icon)?.setImageResource(R.drawable.ic_car)
+            findViewById<TextView>(R.id.dock_label)?.text = "车辆"
+        }
+        
+        binding.dockBar?.dockLock?.apply {
+            findViewById<ImageView>(R.id.dock_icon)?.setImageResource(R.drawable.ic_lock)
+            findViewById<TextView>(R.id.dock_label)?.text = "锁屏"
+        }
+        
+        binding.dockBar?.dockVolume?.apply {
+            findViewById<ImageView>(R.id.dock_icon)?.setImageResource(R.drawable.ic_volume)
+            findViewById<TextView>(R.id.dock_label)?.text = "音量"
+        }
+        
+        binding.dockBar?.dockAdd?.apply {
+            findViewById<ImageView>(R.id.dock_icon)?.setImageResource(R.drawable.ic_add)
+            findViewById<TextView>(R.id.dock_label)?.text = "添加"
+        }
+        
         // 加载Dock应用
         loadDockApps()
         
@@ -255,6 +296,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      * 设置顶部状态栏
      */
     private fun setupTopBar() {
+        // 初始化插件卡片
+        binding.topBar?.pluginNavigation?.apply {
+            findViewById<ImageView>(R.id.plugin_icon)?.setImageResource(R.drawable.ic_navigation)
+            findViewById<TextView>(R.id.plugin_text)?.text = "导航"
+        }
+        
+        binding.topBar?.pluginMusic?.apply {
+            findViewById<ImageView>(R.id.plugin_icon)?.setImageResource(R.drawable.ic_music)
+            findViewById<TextView>(R.id.plugin_text)?.text = "音乐"
+        }
+        
+        binding.topBar?.pluginTheme?.apply {
+            findViewById<ImageView>(R.id.plugin_icon)?.setImageResource(R.drawable.ic_theme)
+            findViewById<TextView>(R.id.plugin_text)?.text = "主题"
+        }
+        
         // 更新时间
         updateTime()
         
