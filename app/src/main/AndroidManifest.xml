@@ -130,17 +130,16 @@
             android:configChanges="orientation|keyboard|keyboardHidden|navigation|screenSize|smallestScreenSize|screenLayout|uiMode"
             android:windowSoftInputMode="adjustResize">
             
-            <!-- Intent Filter: MAIN/LAUNCHER -->
+            <!-- Intent Filter: MAIN/LAUNCHER - 用于应用列表显示 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             
-            <!-- Intent Filter: DEFAULT -->
-            <intent-filter>
+            <!-- Intent Filter: HOME - 用于设置为默认桌面 -->
+            <intent-filter android:priority="1">
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
