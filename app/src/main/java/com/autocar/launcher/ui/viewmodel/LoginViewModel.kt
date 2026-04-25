@@ -74,10 +74,10 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             _loginState.value = LoginState.Loading
             try {
-                val response = ApiClient.authService.loginByPhone(phone, code)
+                val response = ApiClient.authService.loginByPhone(mapOf("phone" to phone, "code" to code))
                 if (response.isSuccessful && response.body()?.success == true) {
                     val data = response.body()?.data
-                    val userId = data?.userId ?: 0L
+                    val userId = data?.userId?.toString() ?: "0"
                     val token = data?.accessToken ?: ""
                     
                     // 保存登录状态
@@ -87,7 +87,7 @@ class LoginViewModel : ViewModel() {
                         setLoggedIn(true)
                     }
                     
-                    _loginState.value = LoginState.Success(userId, token)
+                    _loginState.value = LoginState.Success(userId.toLongOrNull() ?: 0L, token)
                 } else {
                     _loginState.value = LoginState.Error(response.body()?.message ?: "登录失败")
                 }
@@ -101,10 +101,10 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             _loginState.value = LoginState.Loading
             try {
-                val response = ApiClient.authService.loginByEmail(email, code)
+                val response = ApiClient.authService.loginByEmail(mapOf("email" to email, "code" to code))
                 if (response.isSuccessful && response.body()?.success == true) {
                     val data = response.body()?.data
-                    val userId = data?.userId ?: 0L
+                    val userId = data?.userId?.toString() ?: "0"
                     val token = data?.accessToken ?: ""
                     
                     PreferencesManager.getInstance().apply {
@@ -113,7 +113,7 @@ class LoginViewModel : ViewModel() {
                         setLoggedIn(true)
                     }
                     
-                    _loginState.value = LoginState.Success(userId, token)
+                    _loginState.value = LoginState.Success(userId.toLongOrNull() ?: 0L, token)
                 } else {
                     _loginState.value = LoginState.Error(response.body()?.message ?: "登录失败")
                 }
@@ -127,10 +127,10 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             _loginState.value = LoginState.Loading
             try {
-                val response = ApiClient.authService.loginByPassword(account, password)
+                val response = ApiClient.authService.loginByPassword(mapOf("account" to account, "password" to password))
                 if (response.isSuccessful && response.body()?.success == true) {
                     val data = response.body()?.data
-                    val userId = data?.userId ?: 0L
+                    val userId = data?.userId?.toString() ?: "0"
                     val token = data?.accessToken ?: ""
                     
                     PreferencesManager.getInstance().apply {
@@ -139,7 +139,7 @@ class LoginViewModel : ViewModel() {
                         setLoggedIn(true)
                     }
                     
-                    _loginState.value = LoginState.Success(userId, token)
+                    _loginState.value = LoginState.Success(userId.toLongOrNull() ?: 0L, token)
                 } else {
                     _loginState.value = LoginState.Error(response.body()?.message ?: "登录失败")
                 }
@@ -153,10 +153,10 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             _loginState.value = LoginState.Loading
             try {
-                val response = ApiClient.authService.registerByPhone(phone, code, password)
+                val response = ApiClient.authService.registerByPhone(mapOf("phone" to phone, "code" to code, "password" to password))
                 if (response.isSuccessful && response.body()?.success == true) {
                     val data = response.body()?.data
-                    val userId = data?.userId ?: 0L
+                    val userId = data?.userId?.toString() ?: "0"
                     val token = data?.accessToken ?: ""
                     
                     PreferencesManager.getInstance().apply {
@@ -165,7 +165,7 @@ class LoginViewModel : ViewModel() {
                         setLoggedIn(true)
                     }
                     
-                    _loginState.value = LoginState.Success(userId, token)
+                    _loginState.value = LoginState.Success(userId.toLongOrNull() ?: 0L, token)
                 } else {
                     _loginState.value = LoginState.Error(response.body()?.message ?: "注册失败")
                 }
@@ -179,10 +179,10 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             _loginState.value = LoginState.Loading
             try {
-                val response = ApiClient.authService.registerByEmail(email, code, password)
+                val response = ApiClient.authService.registerByEmail(mapOf("email" to email, "code" to code, "password" to password))
                 if (response.isSuccessful && response.body()?.success == true) {
                     val data = response.body()?.data
-                    val userId = data?.userId ?: 0L
+                    val userId = data?.userId?.toString() ?: "0"
                     val token = data?.accessToken ?: ""
                     
                     PreferencesManager.getInstance().apply {
@@ -191,7 +191,7 @@ class LoginViewModel : ViewModel() {
                         setLoggedIn(true)
                     }
                     
-                    _loginState.value = LoginState.Success(userId, token)
+                    _loginState.value = LoginState.Success(userId.toLongOrNull() ?: 0L, token)
                 } else {
                     _loginState.value = LoginState.Error(response.body()?.message ?: "注册失败")
                 }

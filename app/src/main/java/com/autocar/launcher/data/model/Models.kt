@@ -124,6 +124,18 @@ data class BenefitItem(
 )
 
 /**
+ * 订单信息
+ */
+data class OrderResponse(
+    val orderNo: String,
+    val amount: Double,
+    val productType: String? = null,
+    val paymentMethod: String? = null,
+    val status: String? = null,
+    val createdAt: String? = null
+)
+
+/**
  * API统一响应
  */
 data class ApiResponse<T>(

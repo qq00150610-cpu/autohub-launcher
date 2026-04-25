@@ -1,6 +1,7 @@
 package com.autocar.launcher.util
 
 import android.util.Log
+import com.autocar.launcher.BuildConfig
 import timber.log.Timber
 
 /**

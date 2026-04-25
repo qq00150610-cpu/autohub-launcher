@@ -251,7 +251,7 @@ interface MemberService {
     suspend fun createOrder(
         @Query("product_type") productType: String,
         @Query("payment_method") paymentMethod: String
-    ): retrofit2.Response<ApiResponse<Map<String, Any>>>
+    ): retrofit2.Response<ApiResponse<OrderResponse>>
     
     // 支付订单
     @POST("api/member/pay")

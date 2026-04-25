@@ -301,4 +301,34 @@ class PreferencesManager(context: Context) {
     fun clearAll() {
         prefs.edit { clear() }
     }
+    
+    // ==================== 通用 getter/setter ====================
+    
+    /**
+     * 通用的 String 类型获取
+     */
+    fun getString(key: String, defaultValue: String): String {
+        return prefs.getString(key, defaultValue) ?: defaultValue
+    }
+    
+    /**
+     * 通用的 Boolean 类型获取
+     */
+    fun getBoolean(key: String, defaultValue: Boolean): Boolean {
+        return prefs.getBoolean(key, defaultValue)
+    }
+    
+    /**
+     * 通用的 Boolean 类型保存
+     */
+    fun putBoolean(key: String, value: Boolean) {
+        prefs.edit { putBoolean(key, value) }
+    }
+    
+    /**
+     * 通用的 String 类型保存
+     */
+    fun putString(key: String, value: String) {
+        prefs.edit { putString(key, value) }
+    }
 }

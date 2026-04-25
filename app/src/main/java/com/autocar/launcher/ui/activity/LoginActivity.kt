@@ -274,7 +274,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                         PreferencesManager.getInstance().setLoggedIn(true)
                     }
                     data?.userId?.let { userId ->
-                        PreferencesManager.getInstance().saveUserId(userId)
+                        PreferencesManager.getInstance().saveUserId(userId.toString())
                     }
                     
                     showToast("登录成功")
@@ -333,7 +333,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                         PreferencesManager.getInstance().setLoggedIn(true)
                     }
                     data?.userId?.let { userId ->
-                        PreferencesManager.getInstance().saveUserId(userId)
+                        PreferencesManager.getInstance().saveUserId(userId.toString())
                     }
                     
                     showToast("注册成功")

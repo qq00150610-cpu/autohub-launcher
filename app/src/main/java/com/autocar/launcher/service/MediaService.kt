@@ -7,7 +7,7 @@ import android.graphics.Bitmap
 import android.media.MediaMetadata
 import android.media.MediaPlayer
 import android.media.session.PlaybackState
-import androidx.media.session.MediaSession
+import androidx.media.session.MediaSessionCompat
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -44,6 +44,12 @@ class MediaService : BaseService() {
         const val ACTION_STOP = "com.autocar.launcher.action.STOP"
         const val ACTION_NEXT = "com.autocar.launcher.action.NEXT"
         const val ACTION_PREVIOUS = "com.autocar.launcher.action.PREVIOUS"
+        const val ACTION_SEEK_TO = "com.autocar.launcher.action.SEEK_TO"
+        const val ACTION_ENTER_FLOAT_MODE = "com.autocar.launcher.action.ENTER_FLOAT_MODE"
+        const val ACTION_UPDATE_PROGRESS = "com.autocar.launcher.action.UPDATE_PROGRESS"
+        
+        // Extra Keys
+        const val EXTRA_POSITION = "extra_position"
         
         // MediaSession Tag
         private const val MEDIA_SESSION_TAG = "AutoHubMediaSession"
@@ -53,7 +59,7 @@ class MediaService : BaseService() {
     private var mediaPlayer: MediaPlayer? = null
     
     // MediaSession
-    private lateinit var mediaSession: MediaSession
+    private lateinit var mediaSession: MediaSessionCompat
     
     // WakeLock
     private lateinit var wakeLock: PowerManager.WakeLock
@@ -78,7 +84,7 @@ class MediaService : BaseService() {
         super.onCreate()
         
         // 初始化 MediaSession
-        mediaSession = MediaSession(this, MEDIA_SESSION_TAG).apply {
+        mediaSession = MediaSessionCompat(this, MEDIA_SESSION_TAG).apply {
             setCallback(mediaSessionCallback)
             isActive = true
         }
@@ -304,7 +310,7 @@ class MediaService : BaseService() {
     /**
      * MediaSession 回调
      */
-    private val mediaSessionCallback = object : MediaSession.Callback() {
+    private val mediaSessionCallback = object : MediaSessionCompat.Callback() {
         override fun onPlay() {
             play()
         }

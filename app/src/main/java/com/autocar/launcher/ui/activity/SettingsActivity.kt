@@ -4,7 +4,9 @@
 package com.autocar.launcher.ui.activity
 
 import android.app.AlertDialog
+import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
