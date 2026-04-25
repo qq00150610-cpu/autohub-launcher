@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- 背景 -->
+    <path
+        android:fillColor="@color/primary"
+        android:pathData="M0,0h48v48H0z"/>
+    <!-- 凹凸桌面图标 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,6L40,42L34,42L31,36L17,36L14,42L8,42L24,6ZM24,16L19,30L29,30L24,16Z"/>
+</vector>

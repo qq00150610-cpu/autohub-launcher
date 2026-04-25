@@ -126,7 +126,6 @@
             android:stateNotNeeded="true"
             android:excludeFromRecents="false"
             android:clearTaskOnLaunch="true"
-            android:homeActivity="true"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboard|keyboardHidden|navigation|screenSize|smallestScreenSize|screenLayout|uiMode"
             android:windowSoftInputMode="adjustResize">

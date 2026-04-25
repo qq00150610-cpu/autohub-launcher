@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 凹凸桌面图标 - 简单的"A"字母 -->
+    <group android:translateX="27" android:translateY="27">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M27,0L54,54L45,54L39,42L15,42L9,54L0,54L27,0ZM27,18L19,34L35,34L27,18Z"/>
+    </group>
+</vector>
