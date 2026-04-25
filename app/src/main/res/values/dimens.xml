@@ -103,7 +103,6 @@
     <!-- 对话框 -->
     <dimen name="dialog_padding">24dp</dimen>
     <dimen name="dialog_corner_radius">16dp</dimen>
-</resources>
     
     <!-- ========== 凹凸桌面新版布局尺寸 ========== -->
     
@@ -147,3 +146,4 @@
     <!-- 自定义Dock对话框 -->
     <dimen name="customize_app_item_height">72dp</dimen>
     <dimen name="customize_app_list_height">200dp</dimen>
+</resources>
