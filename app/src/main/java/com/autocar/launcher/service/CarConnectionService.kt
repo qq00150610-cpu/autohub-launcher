@@ -97,7 +97,7 @@ class CarConnectionService : BaseService() {
                 }
             }
             ACTION_DISCONNECT -> disconnect()
-            ACTION_READ_DATA -> readAllData()
+            ACTION_READ_DATA -> serviceScope.launch { readAllData() }
         }
         return START_STICKY
     }

@@ -67,7 +67,7 @@ class MediaButtonReceiver : BroadcastReceiver() {
             KeyEvent.KEYCODE_MEDIA_REWIND -> {
                 handleRewind(context)
             }
-            KeyEvent.KEYCODE_MEDIA_FAST_TO_END -> {
+            KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> {
                 handleFastForward(context)
             }
             else -> {
