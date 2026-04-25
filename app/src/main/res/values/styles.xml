@@ -70,6 +70,11 @@
     </style>
     
     <!-- 文本样式 -->
+    <style name="TextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
     <style name="TextStyle.Title">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text_primary</item>
