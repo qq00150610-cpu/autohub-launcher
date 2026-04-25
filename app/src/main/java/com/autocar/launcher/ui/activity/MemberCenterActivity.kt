@@ -149,7 +149,7 @@ class MemberCenterActivity : BaseActivity<ActivityMemberCenterBinding>() {
                     
                     // 显示权益列表
                     val benefitsText = benefits?.take(5)?.joinToString("\n") { 
-                        "✓ ${it.benefitName}" 
+                        "✓ ${it.name}" 
                     } ?: ""
                     
                     binding.tvBenefitsList?.text = benefitsText
@@ -215,7 +215,7 @@ class MemberCenterActivity : BaseActivity<ActivityMemberCenterBinding>() {
     private fun simulatePayment(orderNo: String) {
         lifecycleScope.launch {
             try {
-                val response = ApiClient.memberService.payOrder(orderNo)
+                val response = ApiClient.memberService.payOrder(mapOf("order_no" to orderNo))
                 
                 if (response.isSuccessful && response.body()?.success == true) {
                     Toast.makeText(this@MemberCenterActivity, "支付成功！", Toast.LENGTH_LONG).show()

@@ -6,9 +6,13 @@ package com.autocar.launcher.ui.activity
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.app.ActivityManager
+import android.app.AlertDialog
 import android.content.*
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.graphics.drawable.Drawable
+import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.*
 import android.provider.Settings
 import android.view.*
@@ -31,6 +35,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import java.util.Calendar
+import android.location.LocationManager
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -133,29 +139,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
         
         // 导航Dock点击
-        binding.dockNavigation?.setOnClickListener {
+        binding.dockBar?.dockNavigation?.root?.setOnClickListener {
             onDockClicked(DockType.NAVIGATION)
         }
         
         // 音乐Dock点击
-        binding.dockMusic?.setOnClickListener {
+        binding.dockBar?.dockMusic?.root?.setOnClickListener {
             onDockClicked(DockType.MUSIC)
         }
         
         // 应用Dock点击
-        binding.dockStore?.setOnClickListener {
+        binding.dockBar?.dockStore?.root?.setOnClickListener {
             onDockClicked(DockType.APPS)
         }
         
         // 车辆服务Dock点击
-        binding.dockCar?.setOnClickListener {
+        binding.dockBar?.dockCar?.root?.setOnClickListener {
             openCarServices()
         }
         
-        // 会员中心点击
-        binding.cardMember?.setOnClickListener {
-            openMemberCenter()
-        }
+        // 会员中心点击 (通过AI助手访问)
+        // binding.cardMember?.setOnClickListener {
+        //     openMemberCenter()
+        // }
         
         // 长按Dock进入编辑模式
         setupDockLongPress()
@@ -194,10 +200,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             launchApp(app)
         }
         
-        binding.gridApps?.adapter = appGridAdapter
+        binding.contentArea?.appGridLayout?.frequentlyUsedRecyclerView?.adapter = appGridAdapter
         
         // 长按应用图标
-        binding.gridApps?.onItemLongClickListener = AdapterView.OnItemLongClickListener { _, view, position, _ ->
+        binding.contentArea?.appGridLayout?.frequentlyUsedRecyclerView?.onItemLongClickListener = AdapterView.OnItemLongClickListener { _, view, position, _ ->
             showAppInfo(appList[position])
             true
         }
@@ -219,10 +225,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun setupDockLongPress() {
         listOf(
-            binding.dockNavigation,
-            binding.dockMusic,
-            binding.dockStore,
-            binding.dockCar
+            binding.dockBar?.dockNavigation?.root,
+            binding.dockBar?.dockMusic?.root,
+            binding.dockBar?.dockStore?.root,
+            binding.dockBar?.dockCar?.root
         ).forEach { view ->
             view?.setOnLongClickListener {
                 enterDockEditMode()
@@ -347,12 +353,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 val response = ApiClient.userService.getProfile()
                 if (response.isSuccessful && response.body()?.success == true) {
                     val data = response.body()?.data
-                    binding.tvUserName?.text = data?.nickname ?: "未登录"
+                    // 更新用户名显示 (通过AI助手)
+                    // binding.aiAssistant?.userName = data?.nickname ?: "未登录"
                     
-                    // 更新会员状态
-                    if ((data?.memberLevel ?: 0) > 0) {
-                        binding.cardMember?.visibility = View.VISIBLE
-                    }
+                    // 更新会员状态 (通过AI助手)
+                    // if ((data?.memberLevel ?: 0) > 0) {
+                    //     showMemberBadge()
+                    // }
                 }
             } catch (e: Exception) {
                 LogUtil.e(TAG, "加载用户信息失败", e)
@@ -522,7 +529,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val capabilities = connectivityManager.getNetworkCapabilities(network)
         
         val isConnected = capabilities != null
-        binding.ivNetworkStatus?.setImageResource(
+        binding.statusArea?.wifiIcon?.setImageResource(
             if (isConnected) R.drawable.ic_wifi else R.drawable.ic_signal
         )
     }
@@ -537,7 +544,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 val calendar = Calendar.getInstance()
                 val hour = calendar.get(Calendar.HOUR_OF_DAY)
                 val minute = calendar.get(Calendar.MINUTE)
-                binding.tvTime?.text = String.format("%02d:%02d", hour, minute)
+                val month = calendar.get(Calendar.MONTH) + 1
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
+                val weekDay = getWeekDay(calendar.get(Calendar.DAY_OF_WEEK))
+                binding.statusArea?.dateText?.text = String.format("%02d:%02d %02d月%02d日 %s", hour, minute, month, day, weekDay)
                 handler.postDelayed(this, 1000)
             }
         }
@@ -552,7 +562,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val month = calendar.get(Calendar.MONTH) + 1
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val weekDay = getWeekDay(calendar.get(Calendar.DAY_OF_WEEK))
-        binding.tvDate?.text = "$month月${day}日 $weekDay"
+        binding.statusArea?.dateText?.text = "${month}月${day}日 $weekDay"
     }
 
     /**
@@ -632,9 +642,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun showNavigationArea() {
         currentArea = Area.NAVIGATION
         animateAreaTransition { 
-            binding.layoutNavigation?.visibility = View.VISIBLE
-            binding.layoutMusic?.visibility = View.GONE
-            binding.gridApps?.visibility = View.GONE
+            binding.contentArea?.navigationContainer?.visibility = View.VISIBLE
+            binding.contentArea?.musicContainer?.visibility = View.GONE
+            binding.contentArea?.appContainer?.visibility = View.GONE
         }
         updateDockSelection(DockType.NAVIGATION)
     }
@@ -645,9 +655,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun showMusicArea() {
         currentArea = Area.MUSIC
         animateAreaTransition {
-            binding.layoutNavigation?.visibility = View.GONE
-            binding.layoutMusic?.visibility = View.VISIBLE
-            binding.gridApps?.visibility = View.GONE
+            binding.contentArea?.navigationContainer?.visibility = View.GONE
+            binding.contentArea?.musicContainer?.visibility = View.VISIBLE
+            binding.contentArea?.appContainer?.visibility = View.GONE
         }
         updateDockSelection(DockType.MUSIC)
     }
@@ -658,9 +668,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun showAppsArea() {
         currentArea = Area.APPS
         animateAreaTransition {
-            binding.layoutNavigation?.visibility = View.GONE
-            binding.layoutMusic?.visibility = View.GONE
-            binding.gridApps?.visibility = View.VISIBLE
+            binding.contentArea?.navigationContainer?.visibility = View.GONE
+            binding.contentArea?.musicContainer?.visibility = View.GONE
+            binding.contentArea?.appContainer?.visibility = View.VISIBLE
         }
         updateDockSelection(DockType.APPS)
     }
@@ -669,7 +679,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      * 区域切换动画
      */
     private fun animateAreaTransition(transition: () -> Unit) {
-        val contentView = binding.root?.findViewById<FrameLayout>(R.id.content_container)
+        val contentView = binding.root?.findViewById<FrameLayout>(R.id.main_content_layer)
         contentView?.let {
             val fadeOut = ObjectAnimator.ofFloat(it, "alpha", 1f, 0f)
             val fadeIn = ObjectAnimator.ofFloat(it, "alpha", 0f, 1f)
@@ -693,10 +703,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun updateDockSelection(selected: DockType) {
         val views = mapOf(
-            DockType.NAVIGATION to binding.dockNavigation,
-            DockType.MUSIC to binding.dockMusic,
-            DockType.APPS to binding.dockStore,
-            DockType.CAR_SERVICES to binding.dockCar
+            DockType.NAVIGATION to binding.dockBar?.dockNavigation?.root,
+            DockType.MUSIC to binding.dockBar?.dockMusic?.root,
+            DockType.APPS to binding.dockBar?.dockStore?.root,
+            DockType.CAR_SERVICES to binding.dockBar?.dockCar?.root
         )
         
         views.forEach { (type, view) ->
@@ -709,10 +719,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun setupDockTouchAnimation() {
         listOf(
-            binding.dockNavigation,
-            binding.dockMusic,
-            binding.dockStore,
-            binding.dockCar
+            binding.dockBar?.dockNavigation?.root,
+            binding.dockBar?.dockMusic?.root,
+            binding.dockBar?.dockStore?.root,
+            binding.dockBar?.dockCar?.root
         ).forEach { view ->
             view?.setOnTouchListener { v, event ->
                 when (event.action) {

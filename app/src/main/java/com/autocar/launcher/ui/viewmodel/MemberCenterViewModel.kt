@@ -118,7 +118,7 @@ class MemberCenterViewModel : ViewModel() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = ApiClient.memberService.payOrder(orderNo)
+                val response = ApiClient.memberService.payOrder(mapOf("order_no" to orderNo))
                 if (response.isSuccessful && response.body()?.success == true) {
                     // 支付成功，重新加载会员信息
                     loadMemberInfo()
