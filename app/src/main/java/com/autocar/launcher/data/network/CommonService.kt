@@ -5,7 +5,6 @@ package com.autocar.launcher.data.network
 
 import com.autocar.launcher.data.model.ApiResponse
 import com.autocar.launcher.data.model.SystemConfig
-import com.autocar.launcher.data.model.WeatherInfo
 import retrofit2.Call
 import retrofit2.http.*
 

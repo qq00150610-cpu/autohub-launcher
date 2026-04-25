@@ -5,6 +5,8 @@ package com.autocar.launcher.data.network
 
 import com.autocar.launcher.data.model.AuthResponse
 import com.autocar.launcher.data.model.ApiResponse
+import com.autocar.launcher.data.model.LoginRequest
+import com.autocar.launcher.data.model.RegisterRequest
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -15,9 +17,7 @@ interface AuthService {
      */
     @POST("auth/register/phone")
     fun registerByPhone(
-        @Field("phone") phone: String,
-        @Field("password") password: String,
-        @Field("code") code: String
+        @Body request: RegisterRequest
     ): Call<ApiResponse<AuthResponse>>
 
     /**
@@ -25,9 +25,7 @@ interface AuthService {
      */
     @POST("auth/register/email")
     fun registerByEmail(
-        @Field("email") email: String,
-        @Field("password") password: String,
-        @Field("code") code: String
+        @Body request: RegisterRequest
     ): Call<ApiResponse<AuthResponse>>
 
     /**
@@ -35,8 +33,7 @@ interface AuthService {
      */
     @POST("auth/login/phone")
     fun loginByPhone(
-        @Field("phone") phone: String,
-        @Field("password") password: String
+        @Body request: LoginRequest
     ): Call<ApiResponse<AuthResponse>>
 
     /**
@@ -44,8 +41,7 @@ interface AuthService {
      */
     @POST("auth/login/email")
     fun loginByEmail(
-        @Field("email") email: String,
-        @Field("password") password: String
+        @Body request: LoginRequest
     ): Call<ApiResponse<AuthResponse>>
 
     /**
@@ -53,8 +49,7 @@ interface AuthService {
      */
     @POST("auth/login/password")
     fun loginByPassword(
-        @Field("account") account: String,
-        @Field("password") password: String
+        @Body request: LoginRequest
     ): Call<ApiResponse<AuthResponse>>
 
     /**
@@ -62,33 +57,53 @@ interface AuthService {
      */
     @POST("auth/login/wechat")
     fun loginByWechat(
-        @Field("code") code: String,
-        @Field("nickname") nickname: String?
+        @Body request: LoginRequest
     ): Call<ApiResponse<AuthResponse>>
 
     /**
-     * 发送手机验证码
+     * 发送短信验证码
      */
     @POST("auth/sms/send")
     fun sendSms(
-        @Field("phone") phone: String,
-        @Field("type") type: String
-    ): Call<ApiResponse<Unit>>
+        @Body request: SmsRequest
+    ): Call<ApiResponse<String>>
 
     /**
      * 发送邮箱验证码
      */
     @POST("auth/email/send")
     fun sendEmail(
-        @Field("email") email: String,
-        @Field("type") type: String
-    ): Call<ApiResponse<Unit>>
+        @Body request: EmailRequest
+    ): Call<ApiResponse<String>>
 
     /**
      * 刷新Token
      */
     @POST("auth/token/refresh")
     fun refreshToken(
-        @Field("refreshToken") refreshToken: String
+        @Body request: RefreshTokenRequest
     ): Call<ApiResponse<AuthResponse>>
 }
+
+/**
+ * 短信请求
+ */
+data class SmsRequest(
+    val phone: String,
+    val type: String
+)
+
+/**
+ * 邮箱请求
+ */
+data class EmailRequest(
+    val email: String,
+    val type: String
+)
+
+/**
+ * 刷新Token请求
+ */
+data class RefreshTokenRequest(
+    val refreshToken: String
+)

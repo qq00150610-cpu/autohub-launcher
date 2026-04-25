@@ -21,8 +21,7 @@ interface UserService {
      */
     @POST("user/profile/update")
     fun updateProfile(
-        @Field("nickname") nickname: String?,
-        @Field("avatar") avatar: String?
+        @Body request: UpdateProfileRequest
     ): Call<ApiResponse<UserProfile>>
 
     /**
@@ -30,7 +29,22 @@ interface UserService {
      */
     @POST("user/password/change")
     fun changePassword(
-        @Field("oldPassword") oldPassword: String,
-        @Field("newPassword") newPassword: String
+        @Body request: ChangePasswordRequest
     ): Call<ApiResponse<Unit>>
 }
+
+/**
+ * 更新资料请求
+ */
+data class UpdateProfileRequest(
+    val nickname: String? = null,
+    val avatar: String? = null
+)
+
+/**
+ * 修改密码请求
+ */
+data class ChangePasswordRequest(
+    val oldPassword: String,
+    val newPassword: String
+)

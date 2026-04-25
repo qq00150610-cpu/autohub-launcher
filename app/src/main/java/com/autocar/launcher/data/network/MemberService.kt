@@ -26,7 +26,7 @@ interface MemberService {
      */
     @POST("member/purchase")
     fun purchaseMember(
-        @Field("productId") productId: String
+        @Body request: PurchaseRequest
     ): Call<ApiResponse<MemberInfo>>
 
     /**
@@ -38,6 +38,13 @@ interface MemberService {
         @Query("pageSize") pageSize: Int = 20
     ): Call<ApiResponse<List<MemberOrder>>>
 }
+
+/**
+ * 购买请求
+ */
+data class PurchaseRequest(
+    val productId: String
+)
 
 /**
  * 会员订单
